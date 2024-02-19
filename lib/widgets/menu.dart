@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Responsive.dart';
-import 'package:flutter_dashboard/dashboard.dart';
 import 'package:flutter_dashboard/login_screen.dart';
 import 'package:flutter_dashboard/model/menu_modal.dart';
 import 'package:flutter_dashboard/widgets/profile/profile.dart';
@@ -18,12 +17,11 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> {
   List<MenuModel> menu = [
-    MenuModel(icon: 'assets/svg/home.svg', title: "Dashboard"),
-    MenuModel(icon: 'assets/svg/profile.svg', title: "Profile"),
-    MenuModel(icon: 'assets/svg/exercise.svg', title: "Exercise"),
-    MenuModel(icon: 'assets/svg/setting.svg', title: "Settings"),
-    MenuModel(icon: 'assets/svg/history.svg', title: "History"),
-    MenuModel(icon: 'assets/svg/signout.svg', title: "Signout"),
+    MenuModel(icon: 'assets/svg/profile.svg', title: "ملف شخصي"),
+    MenuModel(icon: 'assets/svg/exercise.svg', title: " تقارير"),
+    MenuModel(icon: 'assets/svg/setting.svg', title: " اعدادات"),
+    MenuModel(icon: 'assets/svg/profile.svg', title: "تسجيل الخروج"),
+    //MenuModel(icon: 'assets/svg/signout.svg', title: "Signout"),
   ];
 
   int selected = 0;
@@ -69,7 +67,8 @@ class _MenuState extends State<Menu> {
                     if (i == 0) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => DashBoard()),
+                        MaterialPageRoute(
+                            builder: (context) => const Profile()),
                       );
                     } else if (i == 1) {
                       Navigator.push(
@@ -87,21 +86,9 @@ class _MenuState extends State<Menu> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Profile()),
-                      );
-                    } else if (i == 4) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Profile()),
-                      );
-                    } else if (i == 5) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
                             builder: (context) => const LoginScreen()),
                       );
-                    }
+                    } 
                   },
                   child: Row(
                     children: [

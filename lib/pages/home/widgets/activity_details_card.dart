@@ -5,15 +5,21 @@ import 'package:flutter_dashboard/widgets/custom_card.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ActivityDetailsCard extends StatelessWidget {
-  const ActivityDetailsCard({super.key});
+  ActivityDetailsCard({super.key});
 
-  final List<HealthModel> healthDetails = const [
+  final List<HealthModel> healthDetails = [
     HealthModel(
-        icon: 'assets/svg/burn.svg', value: "305", title: "Cars "),
-    HealthModel(icon: 'assets/svg/steps.svg', value: "10,983", title: "Steps"),
+      icon: "assets/svg/truck.svg",
+      title: "السيارات ",
+    ),
     HealthModel(
-        icon: 'assets/svg/distance.svg', value: "7km", title: "Distance"),
-    HealthModel(icon: 'assets/svg/sleep.svg', value: "7h48m", title: "Time"),
+      icon: "assets/svg/distance.svg",
+      title: "العناوين",
+    ),
+    HealthModel(title: "الصيانات", icon: "assets/svg/history.svg"),
+    HealthModel(title: "العاملين", icon: "assets/svg/profile.svg"),
+    HealthModel(title: "الايرادات والمصروفات", icon: "assets/svg/steps.svg"),
+    HealthModel(title: "مخازن", icon: "assets/svg/burn.svg"),
   ];
 
   @override
@@ -33,22 +39,23 @@ class ActivityDetailsCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SvgPicture.asset(healthDetails[i].icon),
-              Padding(
-                padding: const EdgeInsets.only(top: 15, bottom: 4),
-                child: Text(
-                  healthDetails[i].value,
-                  style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
-                ),
+              //Container(child: Icon(),),
+              const Padding(
+                padding: EdgeInsets.only(top: 15, bottom: 4),
+                // child: Text(
+                //   healthDetails[i].title,
+                //   style: const TextStyle(
+                //       fontSize: 18,
+                //       color: Colors.white,
+                //       fontWeight: FontWeight.w600),
+                // ),
               ),
               Text(
                 healthDetails[i].title,
                 style: const TextStyle(
-                    fontSize: 13,
+                    fontSize: 17,
                     color: Colors.grey,
-                    fontWeight: FontWeight.normal),
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),

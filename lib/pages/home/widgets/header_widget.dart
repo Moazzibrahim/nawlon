@@ -66,20 +66,48 @@ class Header extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: const Icon(
-                    Icons.search,
-                    color: Colors.grey,
-                    size: 25,
-                  ),
-                  onPressed: () {},
-                ),
+                    icon: const Icon(
+                      Icons.search,
+                      color: Colors.grey,
+                      size: 25,
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Search'),
+                            content: const TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Enter your search query...',
+                              ),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  // Perform search logic here
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Search'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }),
                 InkWell(
                   onTap: () => scaffoldKey.currentState!.openEndDrawer(),
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     child: Image.asset(
-                      "assets/images/main.png",
-                      width: 32,
+                      "assets/images/transporter.png",
+                      width: 150,
                     ),
                   ),
                 )
