@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dashboard/pages/details/widgets/employees_details.dart';
+import 'package:flutter_dashboard/model/employees_details.dart';
 import 'package:flutter_dashboard/responsive.dart';
 import 'package:flutter_dashboard/widgets/custom_card.dart';
 
@@ -37,7 +37,7 @@ class ManyEmployees extends StatelessWidget {
               crossAxisCount: Responsive.isMobile(context) ? 2 : 4,
               crossAxisSpacing: !Responsive.isMobile(context) ? 17 : 12,
               mainAxisSpacing: 16.0),
-          itemCount: 3,
+          itemCount: employeeslist.length,
           physics: const ScrollPhysics(),
           itemBuilder: (BuildContext context, int index) {
             return CustomCard(
