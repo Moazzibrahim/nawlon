@@ -1,6 +1,8 @@
-class HealthModel {
-  String icon;
+import 'package:flutter/material.dart';
+
+class HomeModel {
+  Icon icon;
   //final String value;
   String title;
-  HealthModel({required this.icon, required this.title});
+  HomeModel({required this.icon, required this.title});
 }

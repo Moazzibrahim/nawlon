@@ -1,27 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Responsive.dart';
 import 'package:flutter_dashboard/model/home_model.dart';
+import 'package:flutter_dashboard/pages/details/cars_details_page.dart';
 import 'package:flutter_dashboard/pages/details/employees.dart';
 import 'package:flutter_dashboard/pages/details/maintainance.dart';
+import 'package:flutter_dashboard/pages/details/nawlen_page.dart';
 import 'package:flutter_dashboard/widgets/custom_card.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ActivityDetailsCard extends StatelessWidget {
   ActivityDetailsCard({super.key});
 
-  final List<HealthModel> homeDetails = [
-    HealthModel(
-      icon: "assets/svg/truck.svg",
-      title: "السيارات ",
+  final List<HomeModel> homeDetails = [
+    HomeModel(
+      icon: const Icon(
+        Icons.directions_car,
+        color: Colors.deepOrange,
+        size: 50,
+      ),
+      title: "السيارات",
     ),
-    HealthModel(
-      icon: "assets/svg/distance.svg",
+    HomeModel(
+      icon: const Icon(
+        Icons.directions,
+        color: Colors.deepOrange,
+        size: 50,
+      ),
       title: "النوالين",
     ),
-    HealthModel(title: "الصيانات", icon: "assets/svg/history.svg"),
-    HealthModel(title: "العاملين", icon: "assets/svg/profile.svg"),
-    HealthModel(title: "الايرادات والمصروفات", icon: "assets/svg/steps.svg"),
-    HealthModel(title: "مخازن", icon: "assets/svg/burn.svg"),
+    HomeModel(
+      title: "الصيانات",
+      icon: const Icon(
+        Icons.car_repair_outlined,
+        color: Colors.deepOrange,
+        size: 50,
+      ),
+    ),
+    HomeModel(
+      title: "العاملين",
+      icon: const Icon(
+        Icons.group,
+        color: Colors.deepOrange,
+        size: 50,
+      ),
+    ),
+    HomeModel(
+      title: "الايرادات والمصروفات",
+      icon: const Icon(
+        Icons.money,
+        color: Colors.deepOrange,
+        size: 50,
+      ),
+    ),
+    HomeModel(
+      title: "مخازن",
+      icon: const Icon(
+        Icons.warehouse,
+        color: Colors.deepOrange,
+        size: 50,
+      ),
+    ),
   ];
 
   @override
@@ -53,6 +90,16 @@ class ActivityDetailsCard extends StatelessWidget {
                       title: homeDetails[i].title,
                     ),
                   ));
+            } else if (homeDetails[i].title == 'السيارات') {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => CarsDetailsPage(
+                        title: homeDetails[i].title,
+                      )));
+            } else if (homeDetails[i].title == 'النوالين') {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => NawlenPage(
+                        title: homeDetails[i].title,
+                      )));
             }
           },
           child: CustomCard(
@@ -60,10 +107,10 @@ class ActivityDetailsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SvgPicture.asset(homeDetails[i].icon),
+                //SvgPicture.asset(homeDetails[i].icon),
                 //Container(child: Icon(),),
-                const Padding(
-                  padding: EdgeInsets.only(top: 15, bottom: 4),
+                //const Padding(
+                  //padding: EdgeInsets.only(top: 15, bottom: 4),
                   // child: Text(
                   //   healthDetails[i].title,
                   //   style: const TextStyle(
@@ -71,7 +118,8 @@ class ActivityDetailsCard extends StatelessWidget {
                   //       color: Colors.white,
                   //       fontWeight: FontWeight.w600),
                   // ),
-                ),
+               // ),
+                homeDetails[i].icon,
                 Text(
                   homeDetails[i].title,
                   style: const TextStyle(
