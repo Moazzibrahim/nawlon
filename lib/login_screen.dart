@@ -1,13 +1,17 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/background.dart';
 import 'package:flutter_dashboard/dashboard.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    String email = '';
+    String password = '';
 
     return Scaffold(
       body: Background(
@@ -30,51 +34,48 @@ class LoginScreen extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               margin: const EdgeInsets.symmetric(horizontal: 40),
-              child: const TextField(
-                decoration: InputDecoration(labelText: "Username"),
+              child: TextField(
+                onChanged: (value) {
+                  email = value;
+                },
+                decoration: const InputDecoration(labelText: "Username"),
               ),
             ),
             SizedBox(height: size.height * 0.03),
             Container(
               alignment: Alignment.center,
               margin: const EdgeInsets.symmetric(horizontal: 40),
-              child: const TextField(
-                decoration: InputDecoration(labelText: "Password"),
+              child: TextField(
+                onChanged: (value) {
+                  password = value;
+                },
+                decoration: const InputDecoration(labelText: "Password"),
                 obscureText: true,
               ),
             ),
-            // Container(
-            //   alignment: Alignment.centerRight,
-            //   margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            //   child: const Text(
-            //     "Forgot your password?",
-            //     style: TextStyle(fontSize: 12, color: Colors.deepOrange),
-            //   ),
-            // ),
             SizedBox(height: size.height * 0.05),
             Container(
               alignment: Alignment.centerRight,
               margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DashBoard()),
-                  );
+                  //  Call loginUser function with email and password
+                  //  String result = LoginModel().loginUser(email, password, context);
+                  // if(result != "Success") {
+                  //   setState(() {
+                  //     errorMessage = result;
+                  //   });
+                  // }
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DashBoard()));
                 },
                 child: Container(
                   alignment: Alignment.center,
                   height: 50.0,
                   width: size.width * 0.5,
-                  //color: Colors.deepOrange,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(80.0),
-                      color: Colors.deepOrange
-                      // gradient: const LinearGradient(colors: [
-                      //   Color.fromARGB(255, 212, 102, 5),
-                      //  // Color.fromARGB(255, 208, 136, 10)
-                      // ])
-                      ),
+                      color: Colors.deepOrange),
                   padding: const EdgeInsets.all(0),
                   child: const Text(
                     "LOGIN",
@@ -84,25 +85,6 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // Container(
-            //   alignment: Alignment.centerRight,
-            //   margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            //   child: GestureDetector(
-            //     onTap: () => {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //               builder: (context) =>  DashBoard()))
-            //     },
-            //     child: const Text(
-            //       "Don't Have an Account? Sign up",
-            //       style: TextStyle(
-            //           fontSize: 12,
-            //           fontWeight: FontWeight.bold,
-            //           color: Color(0xFF2661FA)),
-            //     ),
-            //   ),
-            // )
           ],
         ),
       ),

@@ -11,6 +11,7 @@ class Menu extends StatefulWidget {
   const Menu({super.key, required this.scaffoldKey});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MenuState createState() => _MenuState();
 }
 
