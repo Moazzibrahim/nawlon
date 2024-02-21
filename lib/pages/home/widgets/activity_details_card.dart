@@ -108,6 +108,9 @@ class ActivityDetailsCard extends StatelessWidget {
                         title: homeDetails[i].title,
                       )));
             }
+            else if(homeDetails[i].title=="الايرادات والمصروفات"){
+              
+            }
           },
           child: CustomCard(
             child: Column(
