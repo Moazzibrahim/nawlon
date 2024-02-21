@@ -100,6 +100,8 @@ class ActivityDetailsCard extends StatelessWidget {
                   builder: (ctx) => NawlenPage(
                         title: homeDetails[i].title,
                       )));
+            }else if(homeDetails[i].title == 'الايرادات والمصروفات'){
+              
             }
           },
           child: CustomCard(
@@ -107,25 +109,16 @@ class ActivityDetailsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                //SvgPicture.asset(homeDetails[i].icon),
-                //Container(child: Icon(),),
-                //const Padding(
-                  //padding: EdgeInsets.only(top: 15, bottom: 4),
-                  // child: Text(
-                  //   healthDetails[i].title,
-                  //   style: const TextStyle(
-                  //       fontSize: 18,
-                  //       color: Colors.white,
-                  //       fontWeight: FontWeight.w600),
-                  // ),
-               // ),
                 homeDetails[i].icon,
                 Text(
                   homeDetails[i].title,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 17,
                       color: Colors.grey,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold,
+                      
+                      ),
                 ),
               ],
             ),

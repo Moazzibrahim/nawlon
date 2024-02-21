@@ -3,16 +3,31 @@ import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/model/nawlen.dart';
 import 'package:flutter_dashboard/pages/more_detailes/nawlen_list.dart';
 
-class GridNawlen extends StatelessWidget {
-  GridNawlen({super.key});
+class GridNawlen extends StatefulWidget {
+  const GridNawlen({super.key});
 
+  @override
+  State<GridNawlen> createState() => _GridNawlenState();
+}
+
+class _GridNawlenState extends State<GridNawlen> {
   final List<Nawlen> dataNawlen = [
     Nawlen(car: 'nusa', tatekLocation: 'bahary', downLocation: 'sidi beshr',status: 'في الطريق'),
     Nawlen(car: 'zoza', tatekLocation: 'manshia', downLocation: 'sidi gaber',status: 'في الطريق'),
     Nawlen(car: 'aziza', tatekLocation: 'miami', downLocation: 'amrya',status: 'في الطريق'),
     Nawlen(car: 'zoba', tatekLocation: 'moharem beh', downLocation: 'dkhela',status: 'تم الوصول'),
   ];
+  List<String> x=[];
+  List<String> y=[];
 
+  @override
+  void initState() {
+    x= dataNawlen.map((e) => e.status).toList();
+    x= x.where((e) => e=='في الطريق').toList();
+    y= dataNawlen.map((e) => e.status).toList();
+    y=y.where((e) => e=='تم الوصول').toList();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return GridView(
@@ -24,7 +39,7 @@ class GridNawlen extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            var x= dataNawlen.where((e) => e.status=='في الطريق').toList();
+          
             Navigator.of(context).push(
               MaterialPageRoute(builder: (ctx)=> NawlenList(title: dataNawlen[0].status, nawlenList: x))
             );
@@ -50,6 +65,9 @@ class GridNawlen extends StatelessWidget {
         InkWell(
           onTap: () {
             
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (ctx)=> NawlenList(title: dataNawlen[0].status, nawlenList: y))
+            );
           },
           child: Container(
             padding: const EdgeInsets.all(8),

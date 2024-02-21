@@ -1,18 +1,13 @@
 // ignore_for_file: file_names
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_dashboard/model/nawlen.dart';
+
 
 class NawlenList extends StatelessWidget {
   const NawlenList({super.key, required this.title, required this.nawlenList});
   final String title;
-  final List<Nawlen> nawlenList;
+  final List<String> nawlenList;
 
-  void debug(){
-    log('$nawlenList');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +18,6 @@ class NawlenList extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
-            debug();
           },
           icon: const Icon(Icons.arrow_back),
         ),
@@ -31,8 +25,9 @@ class NawlenList extends StatelessWidget {
       body: ListView.builder(
         itemCount: nawlenList.length,
         itemBuilder: (context, index) {
-          return Column(
-            children: nawlenList.map((e) => Text(e.status)).toList(),
+          return ListTile(
+            title: Text('youssef'),
+            subtitle: Text('lolololo'),
           );
         },
       ),

@@ -107,7 +107,6 @@ class Header extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     child: Image.asset(
                       "assets/images/transporter.png",
-                      width: 150,
                     ),
                   ),
                 )
