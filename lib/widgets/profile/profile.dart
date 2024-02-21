@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/responsive.dart';
 import 'package:flutter_dashboard/const.dart';
+import 'package:flutter_dashboard/widgets/profile/edit_profile.dart';
 import 'package:flutter_dashboard/widgets/profile/widgets/scheduled.dart';
 import 'package:flutter_dashboard/widgets/profile/widgets/weightHeightBloodCard.dart';
 
@@ -55,7 +56,11 @@ class Profile extends StatelessWidget {
                 ),
                 Scheduled(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (ctx)=> const EditProfile())
+                    );
+                  },
                   child: Text(
                     "Edit personal information",
                     style: TextStyle(

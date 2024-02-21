@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/model/employees_details.dart';
 import 'package:flutter_dashboard/responsive.dart';
 import 'package:flutter_dashboard/widgets/custom_card.dart';
@@ -28,6 +29,7 @@ class ManyEmployees extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appBar,
         title: Text(title),
       ),
       body: Padding(

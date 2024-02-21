@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/const.dart';
 
 import 'package:flutter_dashboard/model/inventory_details.dart';
 import 'package:flutter_dashboard/responsive.dart';
@@ -21,6 +22,7 @@ class Inventory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appBar,
         title: Text(title),
       ),
       body: Padding(
