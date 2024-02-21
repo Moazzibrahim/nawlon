@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/responsive.dart';
 
 class Header extends StatelessWidget {
@@ -32,75 +31,75 @@ class Header extends StatelessWidget {
                 ),
               ),
             ),
-          if (!Responsive.isMobile(context))
-            Expanded(
-              flex: 4,
-              child: TextField(
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: cardBackgroundColor,
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor),
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 5,
-                    ),
-                    hintText: 'Search',
-                    prefixIcon: const Icon(
-                      Icons.search,
-                      color: Colors.grey,
-                      size: 21,
-                    )),
-              ),
-            ),
+          // if (!Responsive.isMobile(context))
+          //   Expanded(
+          //     flex: 4,
+          //     child: TextField(
+          //       decoration: InputDecoration(
+          //           filled: true,
+          //           fillColor: cardBackgroundColor,
+          //           enabledBorder: const OutlineInputBorder(
+          //             borderSide: BorderSide(color: Colors.transparent),
+          //           ),
+          //           border: OutlineInputBorder(
+          //             borderRadius: BorderRadius.circular(12.0),
+          //           ),
+          //           focusedBorder: OutlineInputBorder(
+          //             borderRadius: BorderRadius.circular(12.0),
+          //             borderSide:
+          //                 BorderSide(color: Theme.of(context).primaryColor),
+          //           ),
+          //           contentPadding: const EdgeInsets.symmetric(
+          //             vertical: 5,
+          //           ),
+          //           hintText: 'Search',
+          //           prefixIcon: const Icon(
+          //             Icons.search,
+          //             color: Colors.grey,
+          //             size: 21,
+          //           )),
+          //     ),
+          //   ),
           if (Responsive.isMobile(context))
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                IconButton(
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.grey,
-                      size: 25,
-                    ),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('Search'),
-                            content: const TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Enter your search query...',
-                              ),
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Cancel'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  // Perform search logic here
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Search'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }),
+                // IconButton(
+                //     icon: const Icon(
+                //       Icons.search,
+                //       color: Colors.grey,
+                //       size: 25,
+                //     ),
+                //     onPressed: () {
+                //       showDialog(
+                //         context: context,
+                //         builder: (BuildContext context) {
+                //           return AlertDialog(
+                //             title: const Text('Search'),
+                //             content: const TextField(
+                //               decoration: InputDecoration(
+                //                 hintText: 'Enter your search query...',
+                //               ),
+                //             ),
+                //             actions: [
+                //               TextButton(
+                //                 onPressed: () {
+                //                   Navigator.pop(context);
+                //                 },
+                //                 child: const Text('Cancel'),
+                //               ),
+                //               TextButton(
+                //                 onPressed: () {
+                //                   // Perform search logic here
+                //                   Navigator.pop(context);
+                //                 },
+                //                 child: const Text('Search'),
+                //               ),
+                //             ],
+                //           );
+                //         },
+                //       );
+                //     }),
                 InkWell(
                   onTap: () => scaffoldKey.currentState!.openEndDrawer(),
                   child: CircleAvatar(
@@ -108,6 +107,7 @@ class Header extends StatelessWidget {
                     child: Image.asset(
                       "assets/images/transporter.png",
                       width: 150,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 )
