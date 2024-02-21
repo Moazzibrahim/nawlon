@@ -4,6 +4,7 @@ import 'package:flutter_dashboard/model/home_model.dart';
 import 'package:flutter_dashboard/pages/details/cars_details_page.dart';
 import 'package:flutter_dashboard/pages/details/employees.dart';
 import 'package:flutter_dashboard/pages/details/maintainance.dart';
+import 'package:flutter_dashboard/pages/details/money.dart';
 import 'package:flutter_dashboard/pages/details/nawlen_page.dart';
 import 'package:flutter_dashboard/pages/details/widgets/inventory.dart';
 import 'package:flutter_dashboard/widgets/custom_card.dart';
@@ -101,9 +102,16 @@ class ActivityDetailsCard extends StatelessWidget {
                   builder: (ctx) => NawlenPage(
                         title: homeDetails[i].title,
                       )));
-            }
-            else if(homeDetails[i].title=="الايرادات والمصروفات"){
-              
+            } else if (homeDetails[i].title == "مخازن") {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => Inventory(
+                        title: homeDetails[i].title,
+                      )));
+            } else if (homeDetails[i].title == "الايرادات والمصروفات") {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => Money(
+                        title: homeDetails[i].title,
+                      )));
             }
           },
           child: CustomCard(
@@ -114,25 +122,24 @@ class ActivityDetailsCard extends StatelessWidget {
                 //SvgPicture.asset(homeDetails[i].icon),
                 //Container(child: Icon(),),
                 //const Padding(
-                  //padding: EdgeInsets.only(top: 15, bottom: 4),
-                  // child: Text(
-                  //   healthDetails[i].title,
-                  //   style: const TextStyle(
-                  //       fontSize: 18,
-                  //       color: Colors.white,
-                  //       fontWeight: FontWeight.w600),
-                  // ),
-               // ),
+                //padding: EdgeInsets.only(top: 15, bottom: 4),
+                // child: Text(
+                //   healthDetails[i].title,
+                //   style: const TextStyle(
+                //       fontSize: 18,
+                //       color: Colors.white,
+                //       fontWeight: FontWeight.w600),
+                // ),
+                // ),
                 homeDetails[i].icon,
                 Text(
                   homeDetails[i].title,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      fontSize: 17,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                      
-                      ),
+                    fontSize: 17,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
