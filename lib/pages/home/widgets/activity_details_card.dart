@@ -110,6 +110,9 @@ class ActivityDetailsCard extends StatelessWidget {
                     ),
                   ));
             }
+            else if(homeDetails[i].title=="الايرادات والمصروفات"){
+              
+            }
           },
           child: CustomCard(
             child: Column(
