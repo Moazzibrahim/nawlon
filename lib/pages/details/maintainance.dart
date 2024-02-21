@@ -29,8 +29,8 @@ class Maintainance extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SizedBox(
-          height: double.infinity,
-          width: double.infinity,
+          height: 800,
+          width: 600,
           child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: Responsive.isMobile(context) ? 2 : 4,

@@ -5,6 +5,7 @@ import 'package:flutter_dashboard/pages/details/cars_details_page.dart';
 import 'package:flutter_dashboard/pages/details/employees.dart';
 import 'package:flutter_dashboard/pages/details/maintainance.dart';
 import 'package:flutter_dashboard/pages/details/nawlen_page.dart';
+import 'package:flutter_dashboard/pages/details/widgets/inventory.dart';
 import 'package:flutter_dashboard/widgets/custom_card.dart';
 
 class ActivityDetailsCard extends StatelessWidget {
@@ -100,8 +101,6 @@ class ActivityDetailsCard extends StatelessWidget {
                   builder: (ctx) => NawlenPage(
                         title: homeDetails[i].title,
                       )));
-            }else if(homeDetails[i].title == 'الايرادات والمصروفات'){
-              
             }
           },
           child: CustomCard(
@@ -109,6 +108,18 @@ class ActivityDetailsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                //SvgPicture.asset(homeDetails[i].icon),
+                //Container(child: Icon(),),
+                //const Padding(
+                  //padding: EdgeInsets.only(top: 15, bottom: 4),
+                  // child: Text(
+                  //   healthDetails[i].title,
+                  //   style: const TextStyle(
+                  //       fontSize: 18,
+                  //       color: Colors.white,
+                  //       fontWeight: FontWeight.w600),
+                  // ),
+               // ),
                 homeDetails[i].icon,
                 Text(
                   homeDetails[i].title,
