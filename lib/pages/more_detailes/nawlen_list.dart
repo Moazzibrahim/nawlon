@@ -7,12 +7,12 @@ class NawlenList extends StatelessWidget {
   const NawlenList(
       {super.key,
       required this.title,
-      required this.nawlenStatus,
+      required this.nawlenvalue,
       required this.nawlenCars,
       required this.nawlenTatekLocation,
       required this.nawlenDownLocation});
   final String title;
-  final List<String> nawlenStatus;
+  final List<int> nawlenvalue;
   final List<String> nawlenCars;
   final List<String> nawlenTatekLocation;
   final List<String> nawlenDownLocation;
@@ -27,22 +27,22 @@ class NawlenList extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          icon: const Icon(Icons.arrow_back),//1213
+          icon: const Icon(Icons.arrow_back),
         ),
       ),
       body: ListView.builder(
-        itemCount: nawlenStatus.length,
+        itemCount: nawlenvalue.length,
         itemBuilder: (context, index) {
           return Card(
-            elevation: 2,
+            elevation: 3,
             margin: const EdgeInsets.all(5),
             color: cardBackgroundColor,
             child: ListTile(
               title: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Status'),
-                  Text('Car Name'),
+                  Text('قيمة الناولين'),
+                  Text('السيارة'),
                   Text('مكان التعتيق'),
                   Text('مكان التحميل'),
                 ],
@@ -50,7 +50,7 @@ class NawlenList extends StatelessWidget {
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(nawlenStatus[index]),
+                  Text(nawlenvalue[index].toString()),
                   Text(nawlenCars[index]),
                   Text(nawlenTatekLocation[index]),
                   Text(nawlenDownLocation[index]),

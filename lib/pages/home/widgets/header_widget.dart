@@ -61,7 +61,7 @@ class Header extends StatelessWidget {
           //     ),
           //   ),
           if (Responsive.isMobile(context))
-            Row(
+            const Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // IconButton(
@@ -99,17 +99,8 @@ class Header extends StatelessWidget {
                 //           );
                 //         },
                 //       );
-                //     }),
-                InkWell(
-                  onTap: () => scaffoldKey.currentState!.openEndDrawer(),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    child: Image.asset(
-                      "assets/images/transporter.png",
-                      width: 150,
-                    ),
-                  ),
-                )
+                //     }), "assets/images/transporter.png"
+              Icon(Icons.directions_car,size: 30,color: Colors.grey,)
               ],
             ),
         ],

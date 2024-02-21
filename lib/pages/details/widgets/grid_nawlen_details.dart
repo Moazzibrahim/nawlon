@@ -13,28 +13,36 @@ class GridNawlen extends StatefulWidget {
 class _GridNawlenState extends State<GridNawlen> {
   final List<Nawlen> dataNawlen = [
     Nawlen(
-        car: 'nusa',
-        tatekLocation: 'bahary',
-        downLocation: 'sidi beshr',
-        status: 'في الطريق'),
+      car: 'nusa',
+      tatekLocation: 'bahary',
+      downLocation: 'sidi beshr',
+      status: 'في الطريق',
+      value: 100,
+    ),
     Nawlen(
-        car: 'zoza',
-        tatekLocation: 'manshia',
-        downLocation: 'sidi gaber',
-        status: 'في الطريق'),
+      car: 'zoza',
+      tatekLocation: 'manshia',
+      downLocation: 'sidi gaber',
+      status: 'في الطريق',
+      value: 200,
+    ),
     Nawlen(
-        car: 'aziza',
-        tatekLocation: 'miami',
-        downLocation: 'amrya',
-        status: 'في الطريق'),
+      car: 'aziza',
+      tatekLocation: 'miami',
+      downLocation: 'amrya',
+      status: 'في الطريق',
+      value: 125,
+    ),
     Nawlen(
-        car: 'zoba',
-        tatekLocation: 'moharem beh',
-        downLocation: 'dkhela',
-        status: 'تم الوصول'),
+      car: 'zoba',
+      tatekLocation: 'moharem beh',
+      downLocation: 'dkhela',
+      status: 'تم الوصول',
+      value: 234,
+    ),
   ];
-  List<String> x = [];
-  List<String> y = [];
+  List<int> valuex = [];
+  List<int> valuey = [];
   List<String> carNamex = [];
   List<String> carNamey = [];
   List<String> tatekLocationx = [];
@@ -44,10 +52,14 @@ class _GridNawlenState extends State<GridNawlen> {
 
   @override
   void initState() {
-    x = dataNawlen.map((e) => e.status).toList();
-    x = x.where((e) => e == 'في الطريق').toList();
-    y = dataNawlen.map((e) => e.status).toList();
-    y = y.where((e) => e == 'تم الوصول').toList();
+    valuex = dataNawlen
+        .where((e) => e.status.contains('في الطريق'))
+        .map((e) => e.value)
+        .toList();
+    valuey = dataNawlen
+        .where((e) => e.status.contains('تم الوصول'))
+        .map((e) => e.value)
+        .toList();
     carNamex = dataNawlen
         .where((e) => e.status.contains('في الطريق'))
         .map((e) => e.car)
@@ -89,7 +101,7 @@ class _GridNawlenState extends State<GridNawlen> {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => NawlenList(
                       title: 'في الطريق',
-                      nawlenStatus: x,
+                      nawlenvalue: valuex,
                       nawlenCars: carNamex,
                       nawlenTatekLocation: tatekLocationx,
                       nawlenDownLocation: downLocationx,
@@ -120,7 +132,7 @@ class _GridNawlenState extends State<GridNawlen> {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => NawlenList(
                       title: 'الباقي',
-                      nawlenStatus: y,
+                      nawlenvalue: valuey,
                       nawlenCars: carNamey,
                       nawlenTatekLocation: tatekLocationy,
                       nawlenDownLocation: downLocationy,

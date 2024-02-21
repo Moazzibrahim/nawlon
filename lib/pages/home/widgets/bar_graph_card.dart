@@ -48,7 +48,7 @@ class BarGraphCard extends StatelessWidget {
     return GridView.builder(
       itemCount: data.length,
       shrinkWrap: true,
-       physics: const ScrollPhysics(),
+      physics: const ScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: Responsive.isMobile(context) ? 1 : 3,
           crossAxisSpacing: !Responsive.isMobile(context) ? 15 : 12,
