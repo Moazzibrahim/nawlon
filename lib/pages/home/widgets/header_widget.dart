@@ -107,7 +107,6 @@ class Header extends StatelessWidget {
                     child: Image.asset(
                       "assets/images/transporter.png",
                       width: 150,
-                      fit: BoxFit.cover,
                     ),
                   ),
                 )
