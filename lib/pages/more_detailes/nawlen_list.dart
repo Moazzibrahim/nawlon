@@ -25,9 +25,15 @@ class NawlenList extends StatelessWidget {
       body: ListView.builder(
         itemCount: nawlenList.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text('youssef'),
-            subtitle: Text('lolololo'),
+          return const ListTile(
+            title: Row(
+              children: [
+                Text('Status'),
+                Text('Car Name'),
+                Text('مكان التعتيق')
+              ],
+            ),
+            
           );
         },
       ),
