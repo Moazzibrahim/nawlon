@@ -7,6 +7,7 @@ import 'package:flutter_dashboard/pages/details/maintainance.dart';
 import 'package:flutter_dashboard/pages/details/money.dart';
 import 'package:flutter_dashboard/pages/details/nawlen_page.dart';
 import 'package:flutter_dashboard/pages/details/widgets/inventory.dart';
+
 import 'package:flutter_dashboard/widgets/custom_card.dart';
 
 class ActivityDetailsCard extends StatelessWidget {
@@ -102,7 +103,7 @@ class ActivityDetailsCard extends StatelessWidget {
                   builder: (ctx) => NawlenPage(
                         title: homeDetails[i].title,
                       )));
-            } else if (homeDetails[i].title == "مخازن") {
+            } else if (homeDetails[i].title == 'مخازن') {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (ctx) => Inventory(
                         title: homeDetails[i].title,

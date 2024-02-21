@@ -12,22 +12,69 @@ class GridNawlen extends StatefulWidget {
 
 class _GridNawlenState extends State<GridNawlen> {
   final List<Nawlen> dataNawlen = [
-    Nawlen(car: 'nusa', tatekLocation: 'bahary', downLocation: 'sidi beshr',status: 'في الطريق'),
-    Nawlen(car: 'zoza', tatekLocation: 'manshia', downLocation: 'sidi gaber',status: 'في الطريق'),
-    Nawlen(car: 'aziza', tatekLocation: 'miami', downLocation: 'amrya',status: 'في الطريق'),
-    Nawlen(car: 'zoba', tatekLocation: 'moharem beh', downLocation: 'dkhela',status: 'تم الوصول'),
+    Nawlen(
+        car: 'nusa',
+        tatekLocation: 'bahary',
+        downLocation: 'sidi beshr',
+        status: 'في الطريق'),
+    Nawlen(
+        car: 'zoza',
+        tatekLocation: 'manshia',
+        downLocation: 'sidi gaber',
+        status: 'في الطريق'),
+    Nawlen(
+        car: 'aziza',
+        tatekLocation: 'miami',
+        downLocation: 'amrya',
+        status: 'في الطريق'),
+    Nawlen(
+        car: 'zoba',
+        tatekLocation: 'moharem beh',
+        downLocation: 'dkhela',
+        status: 'تم الوصول'),
   ];
-  List<String> x=[];
-  List<String> y=[];
+  List<String> x = [];
+  List<String> y = [];
+  List<String> carNamex = [];
+  List<String> carNamey = [];
+  List<String> tatekLocationx = [];
+  List<String> tatekLocationy = [];
+  List<String> downLocationx = [];
+  List<String> downLocationy = [];
 
   @override
   void initState() {
-    x= dataNawlen.map((e) => e.status).toList();
-    x= x.where((e) => e=='في الطريق').toList();
-    y= dataNawlen.map((e) => e.status).toList();
-    y=y.where((e) => e=='تم الوصول').toList();
+    x = dataNawlen.map((e) => e.status).toList();
+    x = x.where((e) => e == 'في الطريق').toList();
+    y = dataNawlen.map((e) => e.status).toList();
+    y = y.where((e) => e == 'تم الوصول').toList();
+    carNamex = dataNawlen
+        .where((e) => e.status.contains('في الطريق'))
+        .map((e) => e.car)
+        .toList();
+    carNamey = dataNawlen
+        .where((e) => e.status.contains('تم الوصول'))
+        .map((e) => e.car)
+        .toList();
+    tatekLocationx = dataNawlen
+        .where((e) => e.status.contains('في الطريق'))
+        .map((e) => e.tatekLocation)
+        .toList();
+    tatekLocationy = dataNawlen
+        .where((e) => e.status.contains('تم الوصول'))
+        .map((e) => e.tatekLocation)
+        .toList();
+    downLocationx = dataNawlen
+        .where((e) => e.status.contains('في الطريق'))
+        .map((e) => e.downLocation)
+        .toList();
+    downLocationy = dataNawlen
+        .where((e) => e.status.contains('تم الوصول'))
+        .map((e) => e.downLocation)
+        .toList();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return GridView(
@@ -39,49 +86,62 @@ class _GridNawlenState extends State<GridNawlen> {
       children: [
         InkWell(
           onTap: () {
-          
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (ctx)=> NawlenList(title: dataNawlen[0].status, nawlenList: x))
-            );
-            },
-          
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (ctx) => NawlenList(
+                      title: 'في الطريق',
+                      nawlenStatus: x,
+                      nawlenCars: carNamex,
+                      nawlenTatekLocation: tatekLocationx,
+                      nawlenDownLocation: downLocationx,
+                    )));
+          },
           child: Container(
             padding: const EdgeInsets.all(8),
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: cardBackgroundColor,
             ),
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('في الطريق',style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),),
+                Text(
+                  'في الطريق',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ),
         ),
         InkWell(
           onTap: () {
-            
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (ctx)=> NawlenList(title: dataNawlen[0].status, nawlenList: y))
-            );
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (ctx) => NawlenList(
+                      title: 'الباقي',
+                      nawlenStatus: y,
+                      nawlenCars: carNamey,
+                      nawlenTatekLocation: tatekLocationy,
+                      nawlenDownLocation: downLocationy,
+                    )));
           },
           child: Container(
             padding: const EdgeInsets.all(8),
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: cardBackgroundColor,
             ),
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('الباقي',style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),),
+                Text(
+                  'الباقي',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ),

@@ -15,8 +15,8 @@ class NawlenPage extends StatelessWidget {
           Navigator.of(context).pop();
         }, icon: const Icon(Icons.arrow_back)),
       ),
-      body: Padding(
-        padding:  const EdgeInsets.all(12.0),
+      body: const Padding(
+        padding:   EdgeInsets.all(12.0),
         child:  GridNawlen(),
       ),
     );
