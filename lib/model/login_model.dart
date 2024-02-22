@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/dashboard.dart';
 import 'package:http/http.dart' as http;
 
+late  String token;
+
 class LoginModel with ChangeNotifier {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passController = TextEditingController();
