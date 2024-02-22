@@ -20,7 +20,7 @@ class ManyEmployees extends StatelessWidget {
         name: "الموظفين",
         num: "50",
         salary: "4000",
-        img: Image.asset("assets/images/1.png")),
+        img: Image.asset("assets/images/3.png")),
   ];
   ManyEmployees({super.key, required this.title});
 
