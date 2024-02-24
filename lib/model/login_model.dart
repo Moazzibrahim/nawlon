@@ -1,8 +1,8 @@
-// Import necessary packages
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_dashboard/dashboard.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:provider/provider.dart';
@@ -19,25 +19,24 @@ class TokenModel with ChangeNotifier {
   }
 }
 
-// Create a class to handle login operations
 class LoginModel with ChangeNotifier {
-  TextEditingController emailcontroller = TextEditingController();
-  TextEditingController passController = TextEditingController();
-
-  Future<void> loginUser(BuildContext context) async {
+  Future<String> loginUser(
+      BuildContext context, String email, String password) async {
     // API endpoint to authenticate user
-    String apiUrl = 'https://yourapi.com/login';
+    String apiUrl = 'https://login.nawlon.org/api/api_login/login';
+    http.Response? response; // Define response variable outside try block
 
     try {
-      final response = await http.post(
+      response = await http.post(
+        // Assign response inside try block
         Uri.parse(apiUrl),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
         body: json.encode({
-          'email': emailcontroller.text,
-          'password': passController.text,
+          'email': email,
+          'password': password,
         }),
       );
 
@@ -48,27 +47,27 @@ class LoginModel with ChangeNotifier {
 
         // Use provider to set the token
         Provider.of<TokenModel>(context, listen: false).setToken(token);
+        log("status code: ${response.statusCode}");
+        log("Token: $token");
+        log("$responseData");
 
-        // Navigate to the dashboard
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => DashBoard()),
-        );
+        // Return success message
+        return "${responseData["success"]}";
       } else {
-        // Authentication failed
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Authentication failed'),
-          ),
-        );
+        // Authentication failed, return error message
+        return "Authentication failed";
       }
     } catch (error) {
       // Handle any errors that occur during the API call
+      log('Error occurred: $error');
+      log('Response status code: ${response?.statusCode ?? 'Unknown'}'); // Access response variable safely
+      log('Response body: ${response?.body ?? 'No response'}'); // Access response variable safely
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Error occurred while authenticating'),
         ),
       );
+      return 'Error occurred while authenticating';
     }
   }
 }

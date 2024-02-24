@@ -26,7 +26,7 @@ class LogoutScreen extends StatelessWidget {
     try {
       if (token != null) {
         final response = await http.post(
-          Uri.parse('http://192.168.1.4/elmanhag_api/api/api_login/logout'),
+          Uri.parse('https://login.nawlon.org/api/api_login/login'),
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
