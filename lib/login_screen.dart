@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   String password = passwordController.text.trim();
                   String result =
                       await LoginModel().loginUser(context, email, password);
-                    var message = 'Data Posted Successfully';
+                  var message = 'Data Posted Successfully';
 
                   if (result != message) {
                     setState(() {

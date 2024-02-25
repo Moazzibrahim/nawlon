@@ -14,42 +14,37 @@ class LogoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokenProvider = Provider.of<TokenModel>(context); // Access TokenModel
 
-    return ElevatedButton(
-      onPressed: () async {
-        await logout(tokenProvider.token,context); // Call logout function with token
-      },
-      child: const Text('Logout'),
-    );
+    return Container();
   }
+Future<void> logout(String? token, BuildContext context) async {
+  try {
+    if (token != null) {
+      final response = await http.post(
+        Uri.parse('https://login.nawlon.org/api/api_login/logout'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token', // Use token here
+        },
+      );
 
-  Future<void> logout(String? token,BuildContext context) async {
-    try {
-      if (token != null) {
-        final response = await http.post(
-          Uri.parse('https://login.nawlon.org/api/api_login/login'),
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': 'Bearer $token', // Use token here
-          },
+      if (response.statusCode == 200) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: ((context) => const LoginScreen())),
         );
-
-        if (response.statusCode == 200) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: ((context) => const LoginScreen())),
-          );
-          log('Logout successful');
-          log(response.body);
-        } else {
-          log('Logout failed');
-          log('Status code: ${response.statusCode}');
-          log('Response body: ${response.body}');
-        }
+        log('Logout successful');
+        log(response.body);
       } else {
-        log('Token is null');
+        log('Logout failed');
+        log('Status code: ${response.statusCode}');
+        log('Response body: ${response.body}');
       }
-    } catch (error) {
-      log('Error: $error');
+    } else {
+      log('Token is null');
     }
+  } catch (error) {
+    log('Error: $error');
   }
+}
+
 }

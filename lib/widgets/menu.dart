@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Responsive.dart';
 import 'package:flutter_dashboard/login_screen.dart';
+import 'package:flutter_dashboard/model/login_model.dart';
 import 'package:flutter_dashboard/model/menu_modal.dart';
 import 'package:flutter_dashboard/widgets/profile/profile.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_dashboard/model/logout_model.dart';
+import 'package:provider/provider.dart';
 
 class Menu extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -16,14 +19,21 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+  late TokenModel tokenProvider;
   List<MenuModel> menu = [
     MenuModel(icon: 'assets/svg/profile.svg', title: "ملف شخصي"),
     MenuModel(icon: 'assets/svg/exercise.svg', title: " تقارير"),
     MenuModel(icon: 'assets/svg/setting.svg', title: " اعدادات"),
     MenuModel(icon: 'assets/svg/profile.svg', title: "تسجيل الخروج"),
   ];
-
   int selected = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Access tokenProvider from Provider
+    tokenProvider = Provider.of<TokenModel>(context, listen: false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +103,7 @@ class _MenuState extends State<Menu> {
                               builder: (context) => const Profile()),
                         );
                       } else if (i == 3) {
+                        const LogoutScreen().logout(tokenProvider.token, context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
