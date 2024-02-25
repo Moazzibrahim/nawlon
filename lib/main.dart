@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/login_screen.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
+import 'package:flutter_dashboard/providers/cars_providers.dart';
 import 'package:provider/provider.dart'; // Import Provider
 
 void main() {
@@ -14,8 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<TokenModel>(
-      create: (context) => TokenModel(), // Provide TokenModel
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<TokenModel>(
+          create: (context) => TokenModel(),
+        ),
+        ChangeNotifierProvider<CarsProvider>(
+          create: (context) => CarsProvider(),
+        ),
+        ChangeNotifierProvider<Idmodel>(create: (_) => Idmodel()),
+      ], // Provide TokenModel
       child: MaterialApp(
         title: 'Flutter Responsive Dashboard',
         debugShowCheckedModeBanner: false,

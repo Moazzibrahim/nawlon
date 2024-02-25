@@ -1,44 +1,56 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/model/cars.dart';
+import 'package:flutter_dashboard/model/login_model.dart';
+import 'package:flutter_dashboard/providers/cars_providers.dart';
+import 'package:provider/provider.dart';
 
 class GridCarsDetails extends StatefulWidget {
-  const GridCarsDetails({super.key});
+  const GridCarsDetails({Key? key});
 
   @override
   State<GridCarsDetails> createState() => _GridCarsDetailsState();
 }
 
 class _GridCarsDetailsState extends State<GridCarsDetails> {
-  final List data = [
-    Cars(num: 3, status: 'معطلة', color: const Color.fromARGB(255, 240, 23, 7)),
-    Cars(
-        num: 5,
-        status: 'في الطريق',
-        color: const Color.fromRGBO(55, 68, 207, 1)),
-    Cars(num: 4, status: 'متاح', color: Colors.green),
-  ];
-
-  List nums = [];
-  dynamic sum = 0;
+  Idmodel? idModel;
   @override
   void initState() {
-    nums = data.map((e) => e.num).toList();
-    for (var x in nums) {
-      sum += x;
-    }
     super.initState();
+    // Fetch car data when the widget initializes
+    idModel =
+        Provider.of<Idmodel>(context, listen: false); // Initialize Idmodel
+    final id = idModel!.id; // Access id property
+    Provider.of<CarsProvider>(context, listen: false).fetchCarsData(id,context);
   }
 
   @override
   Widget build(BuildContext context) {
+    return Consumer<CarsProvider>(
+      builder: (context, carsProvider, _) {
+        // Check if car data is loaded
+        if (carsProvider.carsData.isEmpty) {
+          return const CircularProgressIndicator(); // Show loading indicator
+        } else {
+          return buildGrid(
+              carsProvider.carsData); // Show grid with fetched data
+        }
+      },
+    );
+  }
+
+  Widget buildGrid(List<Cars> data) {
     return Column(
       children: [
+        // Total cars count
         Container(
           padding: const EdgeInsets.all(10),
           margin: const EdgeInsets.only(bottom: 12),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: const Color.fromARGB(255, 33, 34, 45)),
+            borderRadius: BorderRadius.circular(12),
+            color: const Color.fromARGB(255, 33, 34, 45),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -50,7 +62,7 @@ class _GridCarsDetailsState extends State<GridCarsDetails> {
                 ),
               ),
               Text(
-                sum.toString(),
+                data.length.toString(), // Show total cars count
                 style: const TextStyle(
                   fontSize: 19,
                   fontWeight: FontWeight.bold,
@@ -65,8 +77,9 @@ class _GridCarsDetailsState extends State<GridCarsDetails> {
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: data[index].color),
+                  borderRadius: BorderRadius.circular(8),
+                  color: getColorForStatus(data[index].status),
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -98,5 +111,20 @@ class _GridCarsDetailsState extends State<GridCarsDetails> {
         ),
       ],
     );
+  }
+
+  Color getColorForStatus(String status) {
+    switch (status) {
+      case 'معطلة':
+        return Colors.red;
+      case 'في الطريق':
+        return Colors.blue;
+      case 'متاح':
+        return Colors.green;
+      case 'غير متوفرة':
+        return Colors.grey;
+      default:
+        return Colors.black;
+    }
   }
 }

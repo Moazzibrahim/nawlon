@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, avoid_print
 
 import 'dart:developer';
 
@@ -18,6 +18,16 @@ class TokenModel with ChangeNotifier {
     notifyListeners();
   }
 }
+class Idmodel with ChangeNotifier {
+  late String _id = ''; // Initialize _id with an empty string
+  String get id => _id;
+
+  void setid(String id) {
+    _id = id;
+    notifyListeners();
+  }
+}
+
 
 class LoginModel with ChangeNotifier {
   Future<String> loginUser(
@@ -44,11 +54,12 @@ class LoginModel with ChangeNotifier {
         // If authentication is successful, extract token from response
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         String token = responseData['token'];
-
+        int id = responseData['user']['id'] as int;
         // Use provider to set the token
         Provider.of<TokenModel>(context, listen: false).setToken(token);
         log("status code: ${response.statusCode}");
         log("Token: $token");
+        print("id: $id");
         log("$responseData");
 
         // Return success message
