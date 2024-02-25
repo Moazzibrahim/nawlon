@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/login_screen.dart';
+import 'package:flutter_dashboard/model/login_model.dart';
+import 'package:provider/provider.dart'; // Import Provider
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // ignore: use_key_in_widget_constructors
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Responsive Dashboard',
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(
+    return ChangeNotifierProvider<TokenModel>(
+      create: (context) => TokenModel(), // Provide TokenModel
+      child: MaterialApp(
+        title: 'Flutter Responsive Dashboard',
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.dark,
+        theme: ThemeData(
           primaryColor: MaterialColor(
             primaryColorCode,
             <int, Color>{
@@ -33,8 +38,10 @@ class MyApp extends StatelessWidget {
           ),
           scaffoldBackgroundColor: const Color(0xFF171821),
           fontFamily: 'IBMPlexSans',
-          brightness: Brightness.dark),
-      home: const LoginScreen(),
+          brightness: Brightness.dark,
+        ),
+        home: const LoginScreen(),
+      ),
     );
   }
 }
