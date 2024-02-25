@@ -1,7 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/Provider/nawlen_provider.dart';
 import 'package:flutter_dashboard/const.dart';
+import 'package:flutter_dashboard/model/login_model.dart';
 import 'package:flutter_dashboard/model/nawlen.dart';
 import 'package:flutter_dashboard/pages/more_detailes/nawlen_list.dart';
+import 'package:provider/provider.dart';
 
 class GridNawlen extends StatefulWidget {
   const GridNawlen({super.key});
@@ -41,6 +46,13 @@ class _GridNawlenState extends State<GridNawlen> {
       value: 234,
     ),
   ];
+
+
+
+
+
+
+
   List<int> valuex = [];
   List<int> valuey = [];
   List<String> carNamex = [];
@@ -97,7 +109,17 @@ class _GridNawlenState extends State<GridNawlen> {
       ),
       children: [
         InkWell(
-          onTap: () {
+          onTap: () async{
+            final tokenProvider = Provider.of<TokenModel>(context, listen: false);
+            final token = tokenProvider.token;
+            NawlenProvider nawlenProvider = NawlenProvider();
+            var nawlens=await nawlenProvider.getNawlenCar(token);
+
+            for(var x in nawlens){
+              log(x.car);
+            }
+            
+            // ignore: use_build_context_synchronously
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => NawlenList(
                       title: 'في الطريق',
