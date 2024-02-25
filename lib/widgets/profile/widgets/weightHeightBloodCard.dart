@@ -15,9 +15,9 @@ class WeightHeightBloodCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          details("Weight", "53kg"),
-          details("Height", "162cm"),
-          details("Blood Type", "O+"),
+          details("Phone", "01005019348"),
+          details("Status", "active"),
+          details("email", "youssef@gmail.com"),
         ],
       ),
     );

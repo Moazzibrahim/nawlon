@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/model/money_details.dart';
 import 'package:flutter_dashboard/responsive.dart';
 
@@ -15,6 +16,7 @@ class Money extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: appBar,
         title: Text(title),
       ),
       body: Padding(
