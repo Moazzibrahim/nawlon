@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 class Menu extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  const Menu({super.key, required this.scaffoldKey});
+  const Menu({Key? key, required this.scaffoldKey});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -19,7 +19,8 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  late TokenModel tokenProvider;
+  late TokenModel tokenProvider; // Declare tokenProvider variable
+
   List<MenuModel> menu = [
     MenuModel(icon: 'assets/svg/profile.svg', title: "ملف شخصي"),
     MenuModel(icon: 'assets/svg/exercise.svg', title: " تقارير"),
@@ -103,7 +104,7 @@ class _MenuState extends State<Menu> {
                               builder: (context) => const Profile()),
                         );
                       } else if (i == 3) {
-                        const LogoutScreen().logout(tokenProvider.token, context);
+                        LogoutScreen().logout(context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

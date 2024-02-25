@@ -1,24 +1,15 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
-import 'package:flutter_dashboard/login_screen.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:developer';
 import 'package:provider/provider.dart'; // Import Provider
 
-class LogoutScreen extends StatelessWidget {
-  const LogoutScreen({super.key});
+class LogoutScreen with ChangeNotifier {
+  Future<void> logout(BuildContext context) async {
+    try {
+      final tokenProvider = Provider.of<TokenModel>(context, listen: false);
+      final token = tokenProvider.token;
 
-  @override
-  Widget build(BuildContext context) {
-    final tokenProvider = Provider.of<TokenModel>(context); // Access TokenModel
-
-    return Container();
-  }
-Future<void> logout(String? token, BuildContext context) async {
-  try {
-    if (token != null) {
       final response = await http.post(
         Uri.parse('https://login.nawlon.org/api/api_login/logout'),
         headers: {
@@ -29,9 +20,6 @@ Future<void> logout(String? token, BuildContext context) async {
       );
 
       if (response.statusCode == 200) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: ((context) => const LoginScreen())),
-        );
         log('Logout successful');
         log(response.body);
       } else {
@@ -39,12 +27,8 @@ Future<void> logout(String? token, BuildContext context) async {
         log('Status code: ${response.statusCode}');
         log('Response body: ${response.body}');
       }
-    } else {
-      log('Token is null');
+    } catch (error) {
+      log('Error: $error');
     }
-  } catch (error) {
-    log('Error: $error');
   }
-}
-
 }
