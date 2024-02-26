@@ -52,14 +52,18 @@ class CarsProvider with ChangeNotifier {
               statusText: 'غير متاحة'),
         ];
         // Update the class-level carsData property
-        carsbusy =
-            carsList.where((e) => e.statusText.contains('معطلة')).toList();
-        carsInroad =
-            carsList.where((e) => e.statusText.contains('في الطريق')).toList();
-        carsavailable =
-            carsList.where((e) => e.statusText.contains('متاحة')).toList();
-        carsun =
-            carsList.where((e) => e.statusText.contains('غير متاحة')).toList();
+
+      allcars= carsList;
+
+
+        // carsbusy =
+        //     carsList.where((e) => e.statusText.contains('معطلة')).toList();
+        // carsInroad =
+        //     carsList.where((e) => e.statusText.contains('في الطريق')).toList();
+        // carsavailable =
+        //     carsList.where((e) => e.statusText.contains('متاحة')).toList();
+        // carsun =
+        //     carsList.where((e) => e.statusText.contains('غير متاحة')).toList();
 
       //  allcars = [...carsbusy, ...carsInroad, ...carsavailable, ...carsavailable];
         //log("$allcars");

@@ -47,12 +47,6 @@ class _GridNawlenState extends State<GridNawlen> {
     ),
   ];
 
-
-
-
-
-
-
   List<int> valuex = [];
   List<int> valuey = [];
   List<String> carNamex = [];
