@@ -1,5 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/model/cars.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
@@ -7,22 +5,23 @@ import 'package:flutter_dashboard/providers/cars_providers.dart';
 import 'package:provider/provider.dart';
 
 class GridCarsDetails extends StatefulWidget {
-  const GridCarsDetails({Key? key});
+  const GridCarsDetails({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<GridCarsDetails> createState() => _GridCarsDetailsState();
 }
 
 class _GridCarsDetailsState extends State<GridCarsDetails> {
-  Idmodel? idModel;
   @override
   void initState() {
     super.initState();
     // Fetch car data when the widget initializes
-    idModel =
-        Provider.of<Idmodel>(context, listen: false); // Initialize Idmodel
-    final id = idModel!.id; // Access id property
-    Provider.of<CarsProvider>(context, listen: false).fetchCarsData(id,context);
+    final idModel = Provider.of<Idmodel>(context, listen: false);
+    final id = idModel.id;
+    Provider.of<CarsProvider>(context, listen: false)
+        .fetchCarsData(id, context);
   }
 
   @override
@@ -30,101 +29,81 @@ class _GridCarsDetailsState extends State<GridCarsDetails> {
     return Consumer<CarsProvider>(
       builder: (context, carsProvider, _) {
         // Check if car data is loaded
-        if (carsProvider.carsData.isEmpty) {
+        if (carsProvider.carsbusy.isEmpty && carsProvider.carsInroad.isEmpty) {
           return const CircularProgressIndicator(); // Show loading indicator
         } else {
-          return buildGrid(
-              carsProvider.carsData); // Show grid with fetched data
+          return Column(
+            children: [
+              SizedBox(height: 200, child: buildGrid(carsProvider.carsbusy)),
+              SizedBox(height: 200, child: buildGrid2(carsProvider.carsInroad))
+            ],
+          ); // Show grid with fetched data
         }
       },
     );
   }
 
   Widget buildGrid(List<Cars> data) {
-    return Column(
-      children: [
-        // Total cars count
-        Container(
-          padding: const EdgeInsets.all(10),
-          margin: const EdgeInsets.only(bottom: 12),
+    return GridView.builder(
+      itemCount: data.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 15,
+      ),
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: const Color.fromARGB(255, 33, 34, 45),
+            borderRadius: BorderRadius.circular(8),
+            color: data[index].color,
           ),
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Total Cars:',
-                style: TextStyle(
-                  fontSize: 20,
+              Text(
+                'معطلة: ${data[index].carBusy ?? 0}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
-                data.length.toString(), // Show total cars count
-                style: const TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
             ],
           ),
-        ),
-        Expanded(
-          child: GridView.builder(
-            itemCount: data.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: getColorForStatus(data[index].status),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      data[index].num.toString(),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      data[index].status,
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: Colors.white.withOpacity(0.6),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 15,
-            ),
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 
-  Color getColorForStatus(String status) {
-    switch (status) {
-      case 'معطلة':
-        return Colors.red;
-      case 'في الطريق':
-        return Colors.blue;
-      case 'متاح':
-        return Colors.green;
-      case 'غير متوفرة':
-        return Colors.grey;
-      default:
-        return Colors.black;
-    }
+  Widget buildGrid2(List<Cars> data) {
+    return GridView.builder(
+      itemCount: data.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 15,
+      ),
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: data[index].color,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'في الطريق: ${data[index].carInRoad ?? 0}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

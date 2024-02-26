@@ -1,42 +1,56 @@
 import 'package:flutter/material.dart';
 
 class Cars {
-  final int num;
-  final String status;
+  final int? carBusy;
+  final int? carAvailable;
+  final int? carInRoad;
+  final int? carUnAvailable;
   final Color color;
+  final String statusText;
 
   Cars({
-    required this.num,
-    required this.status,
+    this.carBusy,
+    this.carAvailable,
+    this.carInRoad,
+    this.carUnAvailable,
     required this.color,
+    required this.statusText,
   });
 
-  // Factory constructor to parse JSON data
+  // Factory constructor to parse response data
   factory Cars.fromJson(Map<String, dynamic> json) {
-    // Here you can choose the color based on the status or any other logic
-    // For example:
+    // Determine color and status text based on car status
     Color chosenColor;
+    String status;
     switch (json['status']) {
-      case '0':
+      case 0:
         chosenColor = Colors.red;
+        status = "معطلة";
         break;
-      case '1 ':
-        chosenColor = Colors.orange;
-        break;
-      case '2':
+      case 1:
         chosenColor = Colors.green;
+        status = "متاحة";
         break;
-      case '4':
+      case 2:
+        chosenColor = Colors.blue;
+        status = "في الطريق";
+        break;
+      case 3:
         chosenColor = Colors.grey;
+        status = "غير متاحة";
         break;
       default:
         chosenColor = Colors.black;
-        break;
+        status = "Unknown";
     }
+
     return Cars(
-      num: json['num'],
-      status: json['status'],
+      carBusy: json['carBusy'],
+      carAvailable: json['carAvailable'],
+      carInRoad: json['carInRoad'],
+      carUnAvailable: json['carUnAvailable'],
       color: chosenColor,
+      statusText: status,
     );
   }
 }
