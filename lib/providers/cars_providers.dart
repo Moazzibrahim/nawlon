@@ -37,9 +37,9 @@ class CarsProvider with ChangeNotifier {
 
         // Construct Cars objects based on the extracted details
         final List<Cars> carsList = [
-          Cars(carBusy: carBusy ?? 0, color: Colors.red, statusText: 'معطلة'),
+          Cars(carBusy: carAvailable ?? 0, color: Colors.red, statusText: 'معطلة'),
           Cars(
-              carAvailable: carAvailable ?? 0,
+              carAvailable: carBusy ?? 0,
               color: Colors.green,
               statusText: 'متاحة'),
           Cars(

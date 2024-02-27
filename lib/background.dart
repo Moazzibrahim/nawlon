@@ -21,42 +21,31 @@ class Background extends StatelessWidget {
           Positioned(
             top: 0,
             right: 0,
-            child: Image.asset(
-              "assets/images/4.png",
-              width: size.width
-            ),
+            child: Image.asset("assets/images/4.png", width: size.width),
           ),
           Positioned(
-            top: 0,//c
+            top: 0, //c
             right: 0,
-            child: Image.asset(
-              "assets/images/5.png",
-              width: size.width
-            ),
+            child: Image.asset("assets/images/5.png", width: size.width),
           ),
           Positioned(
             top: 50,
-            right: 30,
-            child: Image.asset(
-              "assets/images/transporter.png",
-              width: size.width * 0.35
+            right: 10,
+            child: Transform.scale(
+              scale: 1.5,
+              child: Image.asset("assets/images/transporter.png",
+                  width: size.width * 0.35),
             ),
           ),
           Positioned(
             bottom: 0,
             right: 0,
-            child: Image.asset(
-              "assets/images/3.png",
-              width: size.width
-            ),
+            child: Image.asset("assets/images/3.png", width: size.width),
           ),
           Positioned(
             bottom: 0,
             right: 0,
-            child: Image.asset(
-              "assets/images/6.png",
-              width: size.width
-            ),
+            child: Image.asset("assets/images/6.png", width: size.width),
           ),
           child
         ],
