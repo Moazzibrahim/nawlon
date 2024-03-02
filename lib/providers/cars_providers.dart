@@ -28,7 +28,6 @@ class CarsProvider with ChangeNotifier {
         // Parse response data
         final Map<String, dynamic> responseData = json.decode(response.body);
         print(responseData);
-
         // Extract individual car details from the response
         final int? carBusy = responseData['0']?['carBusy'];
         final int? carAvailable = responseData['1']?['carAvailable'];
@@ -37,9 +36,9 @@ class CarsProvider with ChangeNotifier {
 
         // Construct Cars objects based on the extracted details
         final List<Cars> carsList = [
-          Cars(carBusy: carAvailable ?? 0, color: Colors.red, statusText: 'معطلة'),
+          Cars(carBusy: carBusy ?? 0, color: Colors.red, statusText: 'معطلة'),
           Cars(
-              carAvailable: carBusy ?? 0,
+              carAvailable: carAvailable ?? 0,
               color: Colors.green,
               statusText: 'متاحة'),
           Cars(
@@ -53,8 +52,7 @@ class CarsProvider with ChangeNotifier {
         ];
         // Update the class-level carsData property
 
-      allcars= carsList;
-
+        allcars = carsList;
 
         // carsbusy =
         //     carsList.where((e) => e.statusText.contains('معطلة')).toList();
@@ -65,7 +63,7 @@ class CarsProvider with ChangeNotifier {
         // carsun =
         //     carsList.where((e) => e.statusText.contains('غير متاحة')).toList();
 
-      //  allcars = [...carsbusy, ...carsInroad, ...carsavailable, ...carsavailable];
+        //  allcars = [...carsbusy, ...carsInroad, ...carsavailable, ...carsavailable];
         //log("$allcars");
         notifyListeners();
       } else {
