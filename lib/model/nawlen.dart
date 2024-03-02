@@ -14,22 +14,22 @@ class Nawlen {
   });
 
   factory Nawlen.fromJson(Map<String, dynamic> json)=> Nawlen(
-    status: json[''],
-    car: json[''],
-      tatekLocation: json[''], 
-      downLocation: json[''], 
-      value: json[''],
+    status: json[''][''],
+    car: json[''][''],
+      tatekLocation: json[''][''], 
+      downLocation: json[''][''], 
+      value: json[''][''],
       );
 
 }
 
 class Nawlens{
-  final List<dynamic> xx;
+  final List<dynamic> nawlens;
 
-  Nawlens({required this.xx});
+  Nawlens({required this.nawlens});
   
   factory Nawlens.fromJson(Map<String,dynamic> json)=> Nawlens(
-    xx: List<Nawlen>.from(json[''].map((e) => Nawlen.fromJson(e))),
+    nawlens: List<Nawlen>.from(json[''].map((e) => Nawlen.fromJson(e))),
     );
 
 }

@@ -12,7 +12,7 @@ class NawlenProvider with ChangeNotifier{
     try{
       if(token!=null){
         final response = await http.get(
-          Uri.parse(baseUrl),
+          Uri.parse('${baseUrl}Car/dataNawlon'),
           headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -21,8 +21,10 @@ class NawlenProvider with ChangeNotifier{
         );
         if(response.statusCode==200){
           final Map<String,dynamic> responseData= jsonDecode(response.body);
+
           Nawlens nawlens =Nawlens.fromJson(responseData);
-          var nawlensList=nawlens.xx.map((e) => Nawlen.fromJson(e)).toList();
+          var nawlensList=nawlens.nawlens.map((e) => Nawlen.fromJson(e)).toList();
+          log('$nawlensList');
           return nawlensList;
         }else{
           log('status code: ${response.statusCode}');
