@@ -1,35 +1,47 @@
 class Nawlen {
-  final String status;
-  final String car;
-  final String tatekLocation;
-  final String downLocation;
-  final int value;
+  final int nawlenPindingCount;
+  final int nawlenDoneCount;
 
   Nawlen({
-    required this.status,
-    required this.car,
-    required this.tatekLocation,
-    required this.downLocation,
-    required this.value,
+    required this.nawlenDoneCount,
+    required this.nawlenPindingCount,
   });
 
-  factory Nawlen.fromJson(Map<String, dynamic> json)=> Nawlen(
-    status: json[''][''],
-    car: json[''][''],
-      tatekLocation: json[''][''], 
-      downLocation: json[''][''], 
-      value: json[''][''],
+  factory Nawlen.fromJson(Map<String, dynamic> json) => Nawlen(
+        nawlenPindingCount: json['0']['nawlonesPending'],
+        nawlenDoneCount: json['1']['nawlonesDone'],
       );
-
 }
 
-class Nawlens{
-  final List<dynamic> nawlens;
+class DetailsPinding {
+  final int nawlonPrice;
+  final String locationTatekName;
+  final String tatekLocation;
+  final String locationName;
+  final Map car;
 
-  Nawlens({required this.nawlens});
-  
-  factory Nawlens.fromJson(Map<String,dynamic> json)=> Nawlens(
-    nawlens: List<Nawlen>.from(json[''].map((e) => Nawlen.fromJson(e))),
+  DetailsPinding(
+      {required this.nawlonPrice,
+      required this.locationTatekName,
+      required this.tatekLocation,
+      required this.locationName,
+      required this.car});
+
+  factory DetailsPinding.fromJson(Map<String, dynamic> json) => DetailsPinding(
+      nawlonPrice: json['nawlone_price'],
+      locationTatekName: json['location_tatek_name'],
+      tatekLocation: json['tatek_location'],
+      locationName: json['location_name'],
+      car: json['car']
+      );
+}
+
+class DetailsPindingList{
+  final List<dynamic> dpl;
+
+  DetailsPindingList({required this.dpl});
+
+  factory DetailsPindingList.fromJson(Map<String, dynamic> json)=> DetailsPindingList(
+    dpl: json['2']['detailsPinding'],
     );
-
 }

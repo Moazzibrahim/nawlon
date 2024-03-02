@@ -6,38 +6,35 @@ import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/model/nawlen.dart';
 import 'package:http/http.dart' as http;
 
-class NawlenProvider with ChangeNotifier{
-  
-  Future<List<Nawlen>> getNawlenCar(String? token)async{
-    try{
-      if(token!=null){
+class NawlenProvider with ChangeNotifier {
+
+  Future<List<DetailsPinding>> getDetailsPinding(String? token) async {
+    try {
+      if (token != null) {
         final response = await http.get(
           Uri.parse('${baseUrl}Car/dataNawlon'),
           headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $token'
-        },
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token'
+          },
         );
-        if(response.statusCode==200){
-          final Map<String,dynamic> responseData= jsonDecode(response.body);
+        if (response.statusCode == 200) {
+          final Map<String, dynamic> responseData = jsonDecode(response.body);
 
-          Nawlens nawlens =Nawlens.fromJson(responseData);
-          var nawlensList=nawlens.nawlens.map((e) => Nawlen.fromJson(e)).toList();
-          log('$nawlensList');
-          return nawlensList;
-        }else{
+          DetailsPindingList dbl = DetailsPindingList.fromJson(responseData);
+          var l = dbl.dpl.map((e) => DetailsPinding.fromJson(e)).toList();
+          return l;
+        } else {
           log('status code: ${response.statusCode}');
-        
         }
-      }else{
+      } else {
         log('token is null');
-        }
-    }catch(e){
+      }
+    } catch (e) {
       log('Error: $e');
     }
     throw Exception('Failed to load nawlen');
   }
-
 
 }

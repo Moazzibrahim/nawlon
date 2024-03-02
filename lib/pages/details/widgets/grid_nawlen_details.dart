@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Provider/nawlen_provider.dart';
 
@@ -20,36 +17,7 @@ class GridNawlen extends StatefulWidget {
 }
 
 class _GridNawlenState extends State<GridNawlen> {
-  final List<Nawlen> dataNawlen = [
-    Nawlen(
-      car: 'nusa',
-      tatekLocation: 'bahary',
-      downLocation: 'sidi beshr',
-      status: 'في الطريق',
-      value: 100,
-    ),
-    Nawlen(
-      car: 'zoza',
-      tatekLocation: 'manshia',
-      downLocation: 'sidi gaber',
-      status: 'في الطريق',
-      value: 200,
-    ),
-    Nawlen(
-      car: 'aziza',
-      tatekLocation: 'miami',
-      downLocation: 'amrya',
-      status: 'في الطريق',
-      value: 125,
-    ),
-    Nawlen(
-      car: 'zoba',
-      tatekLocation: 'moharem beh',
-      downLocation: 'dkhela',
-      status: 'تم الوصول',
-      value: 234,
-    ),
-  ];
+  final List<Nawlen> dataNawlen = [];
 
   List<int> valuex = [];
   List<int> valuey = [];
@@ -61,63 +29,6 @@ class _GridNawlenState extends State<GridNawlen> {
   List<String> downLocationy = [];
 
   @override
-  void initState() {
-    valuex = dataNawlen
-        .where((e) => e.status.contains('في الطريق'))
-        .map((e) => e.value)
-        .toList();
-    valuey = dataNawlen
-        .where((e) => e.status.contains('تم الوصول'))
-        .map((e) => e.value)
-        .toList();
-    carNamex = dataNawlen
-        .where((e) => e.status.contains('في الطريق'))
-        .map((e) => e.car)
-        .toList();
-    carNamey = dataNawlen
-        .where((e) => e.status.contains('تم الوصول'))
-        .map((e) => e.car)
-        .toList();
-    tatekLocationx = dataNawlen
-        .where((e) => e.status.contains('في الطريق'))
-        .map((e) => e.tatekLocation)
-        .toList();
-    tatekLocationy = dataNawlen
-        .where((e) => e.status.contains('تم الوصول'))
-        .map((e) => e.tatekLocation)
-        .toList();
-    downLocationx = dataNawlen
-        .where((e) => e.status.contains('في الطريق'))
-        .map((e) => e.downLocation)
-        .toList();
-    downLocationy = dataNawlen
-        .where((e) => e.status.contains('تم الوصول'))
-        .map((e) => e.downLocation)
-        .toList();
-    super.initState();
-  }
-    Future<void> getget(String? token)async{
-      try{
-        if(token!=null){
-        final response = await http.get(
-          Uri.parse('${baseUrl}Car/dataNawlon'),
-          headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $token'
-        },
-        );
-        if(response.statusCode==200){
-          final Map<String,dynamic> responseData= jsonDecode(response.body);
-          log('response nawlen data: $responseData');
-        }
-
-        }
-      }catch(e){
-        log('Error: $e');
-      }
-    }
-  @override
   Widget build(BuildContext context) {
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -127,15 +38,14 @@ class _GridNawlenState extends State<GridNawlen> {
       ),
       children: [
         InkWell(
-          onTap: () {
+          onTap: () async{
             final tokenProvider = Provider.of<TokenModel>(context, listen: false);
             final token = tokenProvider.token;
-            // NawlenProvider nawlenProvider = NawlenProvider();
-            // var nawlens = await nawlenProvider.getNawlenCar(token);
-            // for(var x in nawlens){
-            //   log(x.car);
-            // }
-            getget(token);
+            NawlenProvider nawlenProvider = NawlenProvider();
+            var dbl = await nawlenProvider.getDetailsPinding(token);
+            initState(
+              
+            );
             // ignore: use_build_context_synchronously
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => NawlenList(
@@ -162,6 +72,7 @@ class _GridNawlenState extends State<GridNawlen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                //counter
               ],
             ),
           ),
@@ -193,6 +104,7 @@ class _GridNawlenState extends State<GridNawlen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                //counter
               ],
             ),
           ),
