@@ -34,8 +34,8 @@ class NawlenList extends StatelessWidget {
         itemCount: nawlenValue.length,
         itemBuilder: (context, index) {
           return Card(
-            elevation: 3,
-            margin: const EdgeInsets.all(15),
+            elevation: 2,
+            margin: const EdgeInsets.all(10),
             color: cardBackgroundColor,
             child: ListTile(
               title: const Row(
@@ -50,25 +50,49 @@ class NawlenList extends StatelessWidget {
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    nawlenValue[index].toString(),
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w400, color: Colors.deepOrange),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 8.0), // Adjust the top padding as needed
+                    child: Text(
+                      nawlenValue[index].toString(),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.deepOrange,
+                      ),
+                    ),
                   ),
-                  Text(
-                    carName[index],
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w400, color: Colors.deepOrange),
+                  Padding(
+                    padding: const EdgeInsets.all(
+                        8.0), // Adjust the top padding as needed
+                    child: Text(
+                      carName[index],
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.deepOrange,
+                      ),
+                    ),
                   ),
-                  Text(
-                    tahmelLocation[index],
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w400, color: Colors.deepOrange),
+                  Padding(
+                    padding: const EdgeInsets.all(
+                        8.0), // Adjust the top padding as needed
+                    child: Text(
+                      tahmelLocation[index],
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.deepOrange,
+                      ),
+                    ),
                   ),
-                  Text(
-                    tatekLocation[index],
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w400, color: Colors.deepOrange),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 8.0), // Adjust the top padding as needed
+                    child: Text(
+                      tatekLocation[index],
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.deepOrange,
+                      ),
+                    ),
                   ),
                 ],
               ),
