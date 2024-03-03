@@ -97,9 +97,8 @@ class _GridNawlenState extends State<GridNawlen> {
                 ),
                 Text(
                   'عدد النوالين: $nawlenPindingCount',
-                  style: const TextStyle(
-                    fontSize: 16,
-                  ),
+                  style:
+                      const TextStyle(fontSize: 16, color: Colors.deepOrange),
                 ),
               ],
             ),
@@ -137,9 +136,8 @@ class _GridNawlenState extends State<GridNawlen> {
                 ),
                 Text(
                   'عدد النوالين : $nawlenDoneCount',
-                  style: const TextStyle(
-                    fontSize: 16,
-                  ),
+                  style:
+                      const TextStyle(fontSize: 16, color: Colors.deepOrange),
                 ),
               ],
             ),

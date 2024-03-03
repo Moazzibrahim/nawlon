@@ -5,7 +5,10 @@ class NawlenList extends StatelessWidget {
   const NawlenList({
     Key? key,
     this.title,
-    required this.nawlenValue, required this.tatekLocation, required this.tahmelLocation, required this.carName,
+    required this.nawlenValue,
+    required this.tatekLocation,
+    required this.tahmelLocation,
+    required this.carName,
   }) : super(key: key);
 
   final String? title;
@@ -30,7 +33,6 @@ class NawlenList extends StatelessWidget {
       body: ListView.builder(
         itemCount: nawlenValue.length,
         itemBuilder: (context, index) {
-          
           return Card(
             elevation: 3,
             margin: const EdgeInsets.all(15),
@@ -48,10 +50,26 @@ class NawlenList extends StatelessWidget {
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(nawlenValue[index].toString()), 
-                  Text(carName[index]), 
-                  Text(tahmelLocation[index]),
-                  Text(tatekLocation[index]),
+                  Text(
+                    nawlenValue[index].toString(),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400, color: Colors.deepOrange),
+                  ),
+                  Text(
+                    carName[index],
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400, color: Colors.deepOrange),
+                  ),
+                  Text(
+                    tahmelLocation[index],
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400, color: Colors.deepOrange),
+                  ),
+                  Text(
+                    tatekLocation[index],
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400, color: Colors.deepOrange),
+                  ),
                 ],
               ),
             ),
