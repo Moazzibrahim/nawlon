@@ -19,6 +19,12 @@ class DetailsPinding {
   final String tatekLocation;
   final String locationName;
   final Map car;
+  Map<String, dynamic> toJson() {
+  return {
+    'nawlone_price': nawlonPrice,
+    // Add other properties here
+  };
+}
 
   DetailsPinding(
       {required this.nawlonPrice,

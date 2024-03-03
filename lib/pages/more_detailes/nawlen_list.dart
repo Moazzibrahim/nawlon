@@ -1,27 +1,21 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
 
 class NawlenList extends StatelessWidget {
-  const NawlenList(
-      {super.key,
-      required this.title,
-      required this.nawlenvalue,
-      required this.nawlenCars,
-      required this.nawlenTatekLocation,
-      required this.nawlenDownLocation});
-  final String title;
-  final List<int> nawlenvalue;
-  final List<String> nawlenCars;
-  final List<String> nawlenTatekLocation;
-  final List<String> nawlenDownLocation;
+  const NawlenList({
+    Key? key,
+    this.title,
+    this.detailsPinding,
+  }) : super(key: key);
+
+  final String? title;
+  final List<Map<String, dynamic>>? detailsPinding;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(title ?? ''),
         backgroundColor: const Color.fromARGB(255, 23, 24, 33),
         leading: IconButton(
           onPressed: () {
@@ -31,11 +25,12 @@ class NawlenList extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: nawlenvalue.length,
+        itemCount: detailsPinding?.length ?? 0,
         itemBuilder: (context, index) {
+          final detail = detailsPinding![index];
           return Card(
             elevation: 3,
-            margin: const EdgeInsets.all(5),
+            margin: const EdgeInsets.all(15),
             color: cardBackgroundColor,
             child: ListTile(
               title: const Row(
@@ -50,10 +45,10 @@ class NawlenList extends StatelessWidget {
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(nawlenvalue[index].toString()),
-                  Text(nawlenCars[index]),
-                  Text(nawlenTatekLocation[index]),
-                  Text(nawlenDownLocation[index]),
+                  Text(detail['nawlone_price'].toString()), // Assuming 'nawlone_price' is always present
+                  Text(detail['car']?['cars_name'] ?? 'Unknown'), // Safe access to 'cars_name'
+                  Text(detail['location_tatek_name'] ?? ''),
+                  Text(detail['tatek_location'] ?? ''),
                 ],
               ),
             ),

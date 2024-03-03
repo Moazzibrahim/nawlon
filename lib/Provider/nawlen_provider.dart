@@ -7,7 +7,6 @@ import 'package:flutter_dashboard/model/nawlen.dart';
 import 'package:http/http.dart' as http;
 
 class NawlenProvider with ChangeNotifier {
-
   Future<List<DetailsPinding>> getDetailsPinding(String? token) async {
     try {
       if (token != null) {
@@ -21,9 +20,10 @@ class NawlenProvider with ChangeNotifier {
         );
         if (response.statusCode == 200) {
           final Map<String, dynamic> responseData = jsonDecode(response.body);
-
+          log("$responseData");
           DetailsPindingList dbl = DetailsPindingList.fromJson(responseData);
           var l = dbl.dpl.map((e) => DetailsPinding.fromJson(e)).toList();
+          log("$l");
           return l;
         } else {
           log('status code: ${response.statusCode}');
@@ -36,5 +36,4 @@ class NawlenProvider with ChangeNotifier {
     }
     throw Exception('Failed to load nawlen');
   }
-
 }
