@@ -35,7 +35,7 @@ class _GridNawlenState extends State<GridNawlen> {
       final token = tokenProvider.token;
       NawlenProvider nawlenProvider = NawlenProvider();
       List<DetailsPinding> dbl = await nawlenProvider.getDetailsPinding(token);
-    Nawlen nawlen = await nawlenProvider.getNawlenData(token);
+      Nawlen nawlen = await nawlenProvider.getNawlenData(token);
       setState(() {
         for (var x in dbl) {
         nawlenPindingCount = nawlen.nawlenPindingCount;
