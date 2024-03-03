@@ -38,13 +38,13 @@ class _GridNawlenState extends State<GridNawlen> {
       Nawlen nawlen = await nawlenProvider.getNawlenData(token);
       setState(() {
         for (var x in dbl) {
-        nawlenPindingCount = nawlen.nawlenPindingCount;
-        nawlenDoneCount = nawlen.nawlenDoneCount;
+          nawlenPindingCount = nawlen.nawlenPindingCount;
+          nawlenDoneCount = nawlen.nawlenDoneCount;
           int nawlenValue = x.nawlonPrice;
           String tatekLocation = x.tatekLocation;
           String tahmelLocation = x.locationName;
           String carName = x.car['cars_name'];
-          
+
           nawlenValueList.add(nawlenValue);
           tatekLocationList.add(tatekLocation);
           tahmelLocationList.add(tahmelLocation);
@@ -108,12 +108,12 @@ class _GridNawlenState extends State<GridNawlen> {
         InkWell(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (ctx) => const NawlenList(
-                      title: "النوالين",
-                      nawlenValue: [0],
-                      tatekLocation: [],
-                      tahmelLocation: [],
-                      carName: [],
+                builder: (ctx) => NawlenList(
+                      title: 'في الطريق',
+                      nawlenValue: nawlenValueList,
+                      tatekLocation: tatekLocationList,
+                      tahmelLocation: tahmelLocationList,
+                      carName: carNameList,
                     )));
           },
           child: Container(
