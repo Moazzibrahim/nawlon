@@ -28,7 +28,7 @@ class NawlenList extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: 1,
+        itemCount: nawlenValue.length,
         itemBuilder: (context, index) {
           
           return Card(
