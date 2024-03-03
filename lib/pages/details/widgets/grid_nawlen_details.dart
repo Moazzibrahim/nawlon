@@ -2,10 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Provider/nawlen_provider.dart';
-
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
-
 import 'package:flutter_dashboard/model/nawlen.dart';
 import 'package:flutter_dashboard/pages/more_detailes/nawlen_list.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +18,10 @@ class GridNawlen extends StatefulWidget {
 class _GridNawlenState extends State<GridNawlen> {
   int nawlenPindingCount = 0;
   int nawlenDoneCount = 0;
+  List<int> nawlenValueList = [];
+  List<String> tatekLocationList = [];
+  List<String> tahmelLocationList = [];
+  List<String> carNameList = [];
 
   @override
   void initState() {
@@ -33,12 +35,21 @@ class _GridNawlenState extends State<GridNawlen> {
       final token = tokenProvider.token;
       NawlenProvider nawlenProvider = NawlenProvider();
       List<DetailsPinding> dbl = await nawlenProvider.getDetailsPinding(token);
-
-      // Calculate counts from the fetched data
+    Nawlen nawlen = await nawlenProvider.getNawlenData(token);
       setState(() {
-        nawlenPindingCount =
-            dbl.where((detail) => detail.nawlonPrice == 0).length;
-        nawlenDoneCount = dbl.where((detail) => detail.nawlonPrice > 0).length;
+        for (var x in dbl) {
+        nawlenPindingCount = nawlen.nawlenPindingCount;
+        nawlenDoneCount = nawlen.nawlenDoneCount;
+          int nawlenValue = x.nawlonPrice;
+          String tatekLocation = x.tatekLocation;
+          String tahmelLocation = x.locationName;
+          String carName = x.car['cars_name'];
+          
+          nawlenValueList.add(nawlenValue);
+          tatekLocationList.add(tatekLocation);
+          tahmelLocationList.add(tahmelLocation);
+          carNameList.add(carName);
+        }
       });
     } catch (e) {
       print('Error fetching data: $e');
@@ -56,14 +67,14 @@ class _GridNawlenState extends State<GridNawlen> {
       children: [
         InkWell(
           onTap: () {
-            // Navigator.of(context).push(MaterialPageRoute(
-            //     builder: (ctx) => NawlenList(
-            //           title: 'في الطريق',
-            //           nawlenvalue: valuex,
-            //           nawlenCars: carNamex,
-            //           nawlenTatekLocation: tatekLocationx,
-            //           nawlenDownLocation: downLocationx,
-            //         )));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (ctx) => NawlenList(
+                      title: 'في الطريق',
+                      nawlenValue: nawlenValueList,
+                      tatekLocation: tatekLocationList,
+                      tahmelLocation: tahmelLocationList,
+                      carName: carNameList,
+                    )));
           },
           child: Container(
             padding: const EdgeInsets.all(8),
@@ -99,6 +110,10 @@ class _GridNawlenState extends State<GridNawlen> {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => const NawlenList(
                       title: "النوالين",
+                      nawlenValue: [0],
+                      tatekLocation: [],
+                      tahmelLocation: [],
+                      carName: [],
                     )));
           },
           child: Container(

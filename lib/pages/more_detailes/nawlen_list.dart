@@ -5,11 +5,14 @@ class NawlenList extends StatelessWidget {
   const NawlenList({
     Key? key,
     this.title,
-    this.detailsPinding,
+    required this.nawlenValue, required this.tatekLocation, required this.tahmelLocation, required this.carName,
   }) : super(key: key);
 
   final String? title;
-  final List<Map<String, dynamic>>? detailsPinding;
+  final List<int> nawlenValue;
+  final List<String> tatekLocation;
+  final List<String> tahmelLocation;
+  final List<String> carName;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +28,9 @@ class NawlenList extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: detailsPinding?.length ?? 0,
+        itemCount: 1,
         itemBuilder: (context, index) {
-          final detail = detailsPinding![index];
+          
           return Card(
             elevation: 3,
             margin: const EdgeInsets.all(15),
@@ -45,10 +48,10 @@ class NawlenList extends StatelessWidget {
               subtitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(detail['nawlone_price'].toString()), // Assuming 'nawlone_price' is always present
-                  Text(detail['car']?['cars_name'] ?? 'Unknown'), // Safe access to 'cars_name'
-                  Text(detail['location_tatek_name'] ?? ''),
-                  Text(detail['tatek_location'] ?? ''),
+                  Text(nawlenValue[index].toString()), 
+                  Text(carName[index]), 
+                  Text(tahmelLocation[index]),
+                  Text(tatekLocation[index]),
                 ],
               ),
             ),
