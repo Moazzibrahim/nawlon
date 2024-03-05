@@ -1,15 +1,28 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 
-class Employees with ChangeNotifier {
-  final String name;
-  final String num;
-  final String salary;
-  final Image img;
-  Employees(
-      {required this.name,
-      required this.num,
-      required this.salary,
-      required this.img});
+class Employeedetails with ChangeNotifier {
+  String? successMessage;
+  int? driverAvailable;
+  int? driverFollowAvailable;
+  int? employeeAvailable;
+  String? status;
+  Color? color;
+
+  Employeedetails({
+    this.successMessage,
+    this.driverAvailable,
+    this.driverFollowAvailable,
+    this.employeeAvailable,
+    this.status,
+    this.color,
+  });
+
+  factory Employeedetails.fromJson(Map<String, dynamic> json) {
+    return Employeedetails(
+      successMessage: json['success'] ?? "",
+      driverAvailable: json['driverAvailable'],
+      driverFollowAvailable: json['driverFollowAvailable'],
+      employeeAvailable: json['employeeAvailable'],
+    );
+  }
 }

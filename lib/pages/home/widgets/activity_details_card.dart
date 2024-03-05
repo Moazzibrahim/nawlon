@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Responsive.dart';
 import 'package:flutter_dashboard/model/home_model.dart';
 import 'package:flutter_dashboard/pages/details/cars_details_page.dart';
-import 'package:flutter_dashboard/pages/details/employees.dart';
+import 'package:flutter_dashboard/pages/details/grid_employees.dart';
 import 'package:flutter_dashboard/pages/details/maintainance.dart';
 import 'package:flutter_dashboard/pages/details/money.dart';
 import 'package:flutter_dashboard/pages/details/nawlen_page.dart';

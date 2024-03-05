@@ -20,7 +20,7 @@ class NawlenProvider with ChangeNotifier {
         );
         if (response.statusCode == 200) {
           final Map<String, dynamic> responseData = jsonDecode(response.body);
-          // log("$responseData");
+          log("$responseData");
           DetailsPindingList dbl = DetailsPindingList.fromJson(responseData);
           var l = dbl.dpl.map((e) => DetailsPinding.fromJson(e)).toList();
           // log("$l");
