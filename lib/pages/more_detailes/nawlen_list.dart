@@ -37,65 +37,100 @@ class NawlenList extends StatelessWidget {
             elevation: 2,
             margin: const EdgeInsets.all(10),
             color: cardBackgroundColor,
-            child: ListTile(
-              title: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('قيمة الناولين'),
-                  Text('السيارة'),
-                  Text('مكان التعتيق'),
-                  Text('مكان التحميل'),
-                ],
-              ),
-              subtitle: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 8.0), // Adjust the top padding as needed
-                    child: Text(
-                      nawlenValue[index].toString(),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.deepOrange,
+            child: Table(
+              defaultColumnWidth: const FixedColumnWidth(100.0),
+              border: TableBorder.all(),
+              children: [
+                TableRow(
+                  children: [
+                    TableCell(
+                      child: Container(
+                        color: cardBackgroundColor,
+                        height: 100,
+                        width: 100,
+                        child: const Center(child: Text('قيمة الناولون')),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(
-                        8.0), // Adjust the top padding as needed
-                    child: Text(
-                      carName[index],
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.deepOrange,
+                    TableCell(
+                      child: Container(
+                        color: cardBackgroundColor,
+                        height: 100,
+                        width: 100,
+                        child: const Center(child: Text('السيارة')),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(
-                        8.0), // Adjust the top padding as needed
-                    child: Text(
-                      tahmelLocation[index],
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.deepOrange,
+                    TableCell(
+                      child: Container(
+                        color: cardBackgroundColor,
+                        height: 100,
+                        width: 100,
+                        child: const Center(child: Text('مكان التحميل')),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 8.0), // Adjust the top padding as needed
-                    child: Text(
-                      tatekLocation[index],
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.deepOrange,
+                    TableCell(
+                      child: Container(
+                        color: cardBackgroundColor,
+                        height: 100,
+                        width: 100,
+                        child: const Center(child: Text('مكان التعتيق')),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    TableCell(
+                      child: Container(
+                        color: cardBackgroundColor,
+                        height: 100,
+                        width: 100,
+                        child: Center(
+                            child: Text(
+                          nawlenValue.toString(),
+                          style: const TextStyle(color: Colors.deepOrange),
+                        )),
+                      ),
+                    ),
+                    TableCell(
+                      child: Container(
+                        color: cardBackgroundColor,
+                        height: 100,
+                        width: 100,
+                        child: Center(
+                            child: Text(
+                          carName[index],
+                          style: const TextStyle(color: Colors.deepOrange),
+                        )),
+                      ),
+                    ),
+                    TableCell(
+                      child: Container(
+                        color: cardBackgroundColor,
+                        height: 100,
+                        width: 100,
+                        child: Center(
+                            child: Text(
+                          tahmelLocation[index],
+                          style: const TextStyle(color: Colors.deepOrange),
+                        )),
+                      ),
+                    ),
+                    TableCell(
+                      child: Container(
+                        color: cardBackgroundColor,
+                        height: 100,
+                        width: 100,
+                        child: Center(
+                            child: Text(
+                          tatekLocation[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(color: Colors.deepOrange),
+                        )),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           );
         },
