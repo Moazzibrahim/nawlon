@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Provider/nawlen_provider.dart';
 import 'package:flutter_dashboard/const.dart';
@@ -18,18 +20,27 @@ class GridNawlen extends StatefulWidget {
 class _GridNawlenState extends State<GridNawlen> {
   int nawlenPindingCount = 0;
   int nawlenDoneCount = 0;
+  String status='';
   List<int> nawlenValueList = [];
   List<String> tatekLocationList = [];
   List<String> tahmelLocationList = [];
   List<String> carNameList = [];
 
+String statusy='';
+  List<int> nawlenValueListy = [];
+  List<String> tatekLocationListy = [];
+  List<String> tahmelLocationListy = [];
+  List<String> carNameListy = [];
+
   @override
   void initState() {
+    fetchDataCount();
+    fetchDataPinding();
+    fetchDataDone();
     super.initState();
-    fetchData(); // Fetch data when the widget initializes
   }
 
-  Future<void> fetchData() async {
+  Future<void> fetchDataPinding() async {
     try {
       final tokenProvider = Provider.of<TokenModel>(context, listen: false);
       final token = tokenProvider.token;
@@ -41,10 +52,10 @@ class _GridNawlenState extends State<GridNawlen> {
           nawlenPindingCount = nawlen.nawlenPindingCount;
           nawlenDoneCount = nawlen.nawlenDoneCount;
           int nawlenValue = x.nawlonPrice;
-          String tatekLocation = x.tatekLocation;
+          String tatekLocation = x.locationTatekName;
           String tahmelLocation = x.locationName;
           String carName = x.car['cars_name'];
-
+          status = x.status;
           nawlenValueList.add(nawlenValue);
           tatekLocationList.add(tatekLocation);
           tahmelLocationList.add(tahmelLocation);
@@ -54,6 +65,41 @@ class _GridNawlenState extends State<GridNawlen> {
     } catch (e) {
       print('Error fetching data: $e');
     }
+  }
+
+  Future<void> fetchDataDone() async{
+    try{
+      final tokenProvider = Provider.of<TokenModel>(context, listen: false);
+      final token = tokenProvider.token;
+      NawlenProvider nawlenProvider = NawlenProvider();
+      List<DetailsDone> ddl = await nawlenProvider.getDetailsDone(token);
+      setState(() {
+        for (var x in ddl) {
+          int nawlenValue = x.nawlonPrice;
+          String tatekLocation = x.locationTatekName;
+          String tahmelLocation = x.locationName;
+          String carName = x.car['cars_name'];
+          statusy = x.status;
+          nawlenValueListy.add(nawlenValue);
+          tatekLocationListy.add(tatekLocation);
+          tahmelLocationListy.add(tahmelLocation);
+          carNameListy.add(carName);
+        }
+      });
+    }catch(e){
+      log('Error: $e');
+    }
+  }
+
+  Future<void> fetchDataCount() async{
+      final tokenProvider = Provider.of<TokenModel>(context, listen: false);
+      final token = tokenProvider.token;
+      NawlenProvider nawlenProvider = NawlenProvider();
+      Nawlen nawlen = await nawlenProvider.getNawlenData(token);
+      setState(() {
+        nawlenPindingCount = nawlen.nawlenPindingCount;
+          nawlenDoneCount = nawlen.nawlenDoneCount;
+      });
   }
 
   @override
@@ -108,11 +154,11 @@ class _GridNawlenState extends State<GridNawlen> {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => NawlenList(
-                      title: 'في الطريق',
-                      nawlenValue: nawlenValueList,
-                      tatekLocation: tatekLocationList,
-                      tahmelLocation: tahmelLocationList,
-                      carName: carNameList,
+                      title: 'باقي الناواين',
+                      nawlenValue: nawlenValueListy,
+                      tatekLocation: tatekLocationListy,
+                      tahmelLocation: tahmelLocationListy,
+                      carName: carNameListy,
                     )));
           },
           child: Container(
