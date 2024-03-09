@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Provider/employees_provider.dart';
+import 'package:flutter_dashboard/Provider/inventory_provider.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/login_screen.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<Idmodel>(create: (_) => Idmodel()),
         ChangeNotifierProvider(create: (context) =>Employeeprovider()),
+        ChangeNotifierProvider(create: (context) =>InventoryProvider()),
       ], 
       child: MaterialApp(
         title: 'Flutter Responsive Dashboard',

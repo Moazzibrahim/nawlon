@@ -8,10 +8,10 @@ import 'package:provider/provider.dart';
 
 class CarsProvider with ChangeNotifier {
   List<Cars> allcars = [];
-  List<Cars> carsInroad = [];
-  List<Cars> carsbusy = [];
-  List<Cars> carsavailable = [];
-  List<Cars> carsun = [];
+  // List<Cars> carsInroad = [];
+  // List<Cars> carsbusy = [];
+  // List<Cars> carsavailable = [];
+  // List<Cars> carsun = [];
 
   Future<void> fetchCarsData(String id, BuildContext context) async {
     // Fetch car data from API

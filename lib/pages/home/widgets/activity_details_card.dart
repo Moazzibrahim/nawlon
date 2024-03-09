@@ -3,10 +3,10 @@ import 'package:flutter_dashboard/Responsive.dart';
 import 'package:flutter_dashboard/model/home_model.dart';
 import 'package:flutter_dashboard/pages/details/cars_details_page.dart';
 import 'package:flutter_dashboard/pages/details/grid_employees.dart';
-import 'package:flutter_dashboard/pages/details/maintainance.dart';
+import 'package:flutter_dashboard/pages/details/grid_maintainance.dart';
 import 'package:flutter_dashboard/pages/details/money.dart';
 import 'package:flutter_dashboard/pages/details/nawlen_page.dart';
-import 'package:flutter_dashboard/pages/details/widgets/inventory.dart';
+import 'package:flutter_dashboard/pages/details/widgets/grid_inventory.dart';
 
 import 'package:flutter_dashboard/widgets/custom_card.dart';
 
@@ -105,7 +105,7 @@ class ActivityDetailsCard extends StatelessWidget {
                       )));
             } else if (homeDetails[i].title == 'مخازن') {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) => Inventory(
+                  builder: (ctx) => GridInventory(
                         title: homeDetails[i].title,
                       )));
             } else if (homeDetails[i].title == "الايرادات والمصروفات") {

@@ -16,7 +16,7 @@ class Employeeprovider with ChangeNotifier {
       final tokenProvider = Provider.of<TokenModel>(context, listen: false);
       final token = tokenProvider.token;
       final response = await http.get(
-        Uri.parse('https://login.nawlon.org/api/Car/Worker'),
+        Uri.parse('https://login.nawlon.org/api/Car/store'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
