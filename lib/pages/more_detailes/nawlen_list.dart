@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NawlenList extends StatelessWidget {
   const NawlenList({
@@ -35,7 +36,10 @@ class NawlenList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Card(
             elevation: 2,
-            margin: const EdgeInsets.all(10),
+            margin: EdgeInsets.symmetric(
+              vertical: 10.h,
+              horizontal: 10.w
+              ),
             color: cardBackgroundColor,
             child: Table(
               defaultColumnWidth: const FixedColumnWidth(100.0),

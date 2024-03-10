@@ -5,6 +5,7 @@ import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/login_screen.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
 import 'package:flutter_dashboard/providers/cars_providers.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart'; // Import Provider
 
 void main() {
@@ -17,44 +18,50 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<TokenModel>(
-          create: (context) => TokenModel(),
-        ),
-        ChangeNotifierProvider<CarsProvider>(
-          create: (context) => CarsProvider(),
-        ),
-        ChangeNotifierProvider<Idmodel>(create: (_) => Idmodel()),
-        ChangeNotifierProvider(create: (context) =>Employeeprovider()),
-        ChangeNotifierProvider(create: (context) =>InventoryProvider()),
-      ], 
-      child: MaterialApp(
-        title: 'Flutter Responsive Dashboard',
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.dark,
-        theme: ThemeData(
-          primaryColor: MaterialColor(
-            primaryColorCode,
-            <int, Color>{
-              50: const Color(primaryColorCode).withOpacity(0.1),
-              100: const Color(primaryColorCode).withOpacity(0.2),
-              200: const Color(primaryColorCode).withOpacity(0.3),
-              300: const Color(primaryColorCode).withOpacity(0.4),
-              400: const Color(primaryColorCode).withOpacity(0.5),
-              500: const Color(primaryColorCode).withOpacity(0.6),
-              600: const Color(primaryColorCode).withOpacity(0.7),
-              700: const Color(primaryColorCode).withOpacity(0.8),
-              800: const Color(primaryColorCode).withOpacity(0.9),
-              900: const Color(primaryColorCode).withOpacity(1.0),
-            },
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_,child) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider<TokenModel>(
+            create: (context) => TokenModel(),
           ),
-          scaffoldBackgroundColor: const Color(0xFF171821),
-          fontFamily: 'IBMPlexSans',
-          brightness: Brightness.dark,
+          ChangeNotifierProvider<CarsProvider>(
+            create: (context) => CarsProvider(),
+          ),
+          ChangeNotifierProvider<Idmodel>(create: (_) => Idmodel()),
+          ChangeNotifierProvider(create: (context) =>Employeeprovider()),
+          ChangeNotifierProvider(create: (context) =>InventoryProvider()),
+        ], 
+        child: MaterialApp(
+          title: 'Flutter Responsive Dashboard',
+          debugShowCheckedModeBanner: false,
+          themeMode: ThemeMode.dark,
+          theme: ThemeData(
+            primaryColor: MaterialColor(
+              primaryColorCode,
+              <int, Color>{
+                50: const Color(primaryColorCode).withOpacity(0.1),
+                100: const Color(primaryColorCode).withOpacity(0.2),
+                200: const Color(primaryColorCode).withOpacity(0.3),
+                300: const Color(primaryColorCode).withOpacity(0.4),
+                400: const Color(primaryColorCode).withOpacity(0.5),
+                500: const Color(primaryColorCode).withOpacity(0.6),
+                600: const Color(primaryColorCode).withOpacity(0.7),
+                700: const Color(primaryColorCode).withOpacity(0.8),
+                800: const Color(primaryColorCode).withOpacity(0.9),
+                900: const Color(primaryColorCode).withOpacity(1.0),
+              },
+            ),
+            scaffoldBackgroundColor: const Color(0xFF171821),
+            fontFamily: 'IBMPlexSans',
+            brightness: Brightness.dark,
+          ),
+          home: const LoginScreen(),
         ),
-        home: const LoginScreen(),
-      ),
+      )
+
     );
   }
 }
