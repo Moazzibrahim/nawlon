@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class GridInventory extends StatefulWidget {
   final String title;
 
-  const GridInventory({
+  const GridInventory({super.key, 
     required this.title,
   });
 

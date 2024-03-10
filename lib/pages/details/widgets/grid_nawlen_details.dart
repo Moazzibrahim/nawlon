@@ -21,6 +21,8 @@ class _GridNawlenState extends State<GridNawlen> {
   int nawlenPindingCount = 0;
   int nawlenDoneCount = 0;
   String status='';
+  bool isDataLoadedPinding=false;
+  bool isDataLoadedDone=false;
   List<int> nawlenValueList = [];
   List<String> tatekLocationList = [];
   List<String> tahmelLocationList = [];
@@ -35,8 +37,12 @@ String statusy='';
   @override
   void initState() {
     fetchDataCount();
-    fetchDataPinding();
-    fetchDataDone();
+    fetchDataPinding().then((value) {setState(() {
+      isDataLoadedPinding=true;
+    });});
+    fetchDataDone().then((value) {setState(() {
+      isDataLoadedDone=true;
+    });});
     super.initState();
   }
   NawlenProvider nawlenProvider = NawlenProvider();
@@ -112,7 +118,8 @@ String statusy='';
       children: [
         InkWell(
           onTap: () {
-            if(nawlenProvider.l.isNotEmpty){
+            if(isDataLoadedPinding){
+              if(nawlenProvider.l.isNotEmpty){
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => NawlenList(
                       title: 'في الطريق',
@@ -125,6 +132,7 @@ String statusy='';
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (ctx)=> const NoDataScreen())
               );
+            }
             }
           },
           child: Container(
@@ -156,11 +164,12 @@ String statusy='';
           ),
         ),
         InkWell(
-          onTap: () async{
-            if(nawlenProvider.l.isNotEmpty){
+          onTap: () {
+            if(isDataLoadedDone){
+              if(nawlenProvider.l.isNotEmpty){
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => NawlenList(
-                      title: 'باقي الناواين',
+                      title: 'باقي الناوللين',
                       nawlenValue: nawlenValueListy,
                       tatekLocation: tatekLocationListy,
                       tahmelLocation: tahmelLocationListy,
@@ -170,6 +179,7 @@ String statusy='';
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (ctx)=> const NoDataScreen())
               );
+            }
             }
           },
           child: Container(

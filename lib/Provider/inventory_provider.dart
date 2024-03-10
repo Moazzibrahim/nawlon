@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class InventoryProvider with ChangeNotifier {
   List<InventoryDetails> allInventory = [];
-  
+
   Future<void> fetchinventoryData(BuildContext context) async {
     // Fetch car data from API
     String apiUrl = 'https://login.nawlon.org/api/Car/store';
@@ -21,7 +21,7 @@ class InventoryProvider with ChangeNotifier {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       });
-      
+
       if (response.statusCode == 200) {
         // Parse response data
         final responseData = jsonDecode(response.body);
@@ -45,12 +45,22 @@ class InventoryProvider with ChangeNotifier {
                 carPartId: item['car_part_id'],
                 totalPrice: totalPrice,
                 quantity: quantity,
-                pricePerItem: pricePerItem, // Assigning the calculated price per item
+                pricePerItem:
+                    pricePerItem, // Assigning the calculated price per item
                 carpartname: item['car_part']['name'],
                 carpartlocation: item['car_part']['location'],
                 color: cardBackgroundColor,
               ),
             );
+            // InventoryDetails(
+            //   id: item['id'],
+            //   carPartId: item['car_part_id'],
+            //   totalPrice: double.parse(item['totalPrice'].toString()),
+            //   quantity: item['quantity'],
+            //   carpartname: item['car_part']['name'],
+            //   carpartlocation: item['car_part']['location'],
+            //   color: cardBackgroundColor,
+            // ),
           }
 
           allInventory = lists;

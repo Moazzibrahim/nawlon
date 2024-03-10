@@ -29,7 +29,6 @@ class NoDataScreen extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                // Handle button press to fetch data or navigate back
                 Navigator.pop(context);
               },
               child: const Text('Go Back'),
