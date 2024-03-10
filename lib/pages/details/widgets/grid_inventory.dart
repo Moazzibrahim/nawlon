@@ -50,6 +50,7 @@ class _GridInventoryState extends State<GridInventory> {
                         crossAxisCount: 2,
                         mainAxisSpacing: 20,
                         crossAxisSpacing: 20,
+                        childAspectRatio: 0.8,
                       ),
                       itemCount: inventoryProvider.allInventory.length,
                       physics: const NeverScrollableScrollPhysics(),
@@ -61,8 +62,7 @@ class _GridInventoryState extends State<GridInventory> {
                           padding: const EdgeInsets.all(7),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color:
-                                cardBackgroundColor, // Set a color for decoration
+                            color: cardBackgroundColor,
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +70,7 @@ class _GridInventoryState extends State<GridInventory> {
                               Text(
                                 ' المنتج: ${inventoryItem.carpartname}',
                                 style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w500),
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 3,
@@ -78,7 +78,7 @@ class _GridInventoryState extends State<GridInventory> {
                               Text(
                                 'المكان: ${inventoryItem.carpartlocation}',
                                 style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w500),
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 height: 3,
@@ -86,7 +86,7 @@ class _GridInventoryState extends State<GridInventory> {
                               Text(
                                 'الكمية: ${inventoryItem.quantity}',
                                 style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w500),
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
