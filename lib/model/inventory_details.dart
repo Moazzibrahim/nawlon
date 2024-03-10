@@ -5,6 +5,7 @@ class InventoryDetails with ChangeNotifier {
   int? carPartId;
   double? totalPrice;
   int? quantity;
+  double? pricePerItem; // Adjusted to double to handle division
   String? carpartname;
   String? carpartlocation;
   String? carPartName;
@@ -17,13 +18,19 @@ class InventoryDetails with ChangeNotifier {
     this.carPartId,
     this.totalPrice,
     this.quantity,
+    this.pricePerItem, // Changed from 'price' to 'pricePerItem'
     this.carpartname,
     this.carpartlocation,
     this.carPartName,
     this.carPartLocation,
     this.carPartCode,
     this.color,
-  });
+  }) {
+    // Calculate price per item based on total price and quantity
+    if (totalPrice != null && quantity != null && quantity! > 0) {
+      pricePerItem = totalPrice! / quantity!;
+    }
+  }
 
   factory InventoryDetails.fromJson(Map<String, dynamic> json) {
     var carPart = json['0']['storeNawlon'][0]['car_part'];

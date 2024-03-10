@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 class InventoryProvider with ChangeNotifier {
   List<InventoryDetails> allInventory = [];
+  
   Future<void> fetchinventoryData(BuildContext context) async {
     // Fetch car data from API
     String apiUrl = 'https://login.nawlon.org/api/Car/store';
@@ -21,6 +21,7 @@ class InventoryProvider with ChangeNotifier {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       });
+      
       if (response.statusCode == 200) {
         // Parse response data
         final responseData = jsonDecode(response.body);
@@ -32,27 +33,24 @@ class InventoryProvider with ChangeNotifier {
           List<InventoryDetails> lists = [];
 
           for (var item in data0) {
+            // Calculate price per item
+            double totalPrice = double.parse(item['totalPrice'].toString());
+            int quantity = item['quantity'];
+            double pricePerItem = totalPrice / quantity;
+
             // Creating InventoryDetails object for each item
-            lists = [
+            lists.add(
               InventoryDetails(
                 id: item['id'],
                 carPartId: item['car_part_id'],
-                totalPrice: double.parse(item['totalPrice'].toString()),
-                quantity: item['quantity'],
+                totalPrice: totalPrice,
+                quantity: quantity,
+                pricePerItem: pricePerItem, // Assigning the calculated price per item
                 carpartname: item['car_part']['name'],
                 carpartlocation: item['car_part']['location'],
                 color: cardBackgroundColor,
               ),
-              InventoryDetails(
-                id: item['id'],
-                carPartId: item['car_part_id'],
-                totalPrice: double.parse(item['totalPrice'].toString()),
-                quantity: item['quantity'],
-                carpartname: item['car_part']['name'],
-                carpartlocation: item['car_part']['location'],
-                color: cardBackgroundColor,
-              ),
-            ];
+            );
           }
 
           allInventory = lists;

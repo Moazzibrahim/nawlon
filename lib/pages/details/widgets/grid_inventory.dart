@@ -88,6 +88,14 @@ class _GridInventoryState extends State<GridInventory> {
                                 style: const TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
+                              const SizedBox(
+                                height: 3,
+                              ),
+                              Text(
+                                "السعر: ${inventoryItem.pricePerItem}",
+                                style: const TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
                             ],
                           ),
                         );
