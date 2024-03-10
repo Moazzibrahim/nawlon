@@ -7,6 +7,7 @@ import 'package:flutter_dashboard/Provider/nawlen_provider.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
 import 'package:flutter_dashboard/model/nawlen.dart';
+import 'package:flutter_dashboard/pages/details/no_data_screen.dart';
 import 'package:flutter_dashboard/pages/more_detailes/nawlen_list.dart';
 import 'package:provider/provider.dart';
 
@@ -39,12 +40,11 @@ String statusy='';
     fetchDataDone();
     super.initState();
   }
-
+  NawlenProvider nawlenProvider = NawlenProvider();
   Future<void> fetchDataPinding() async {
     try {
       final tokenProvider = Provider.of<TokenModel>(context, listen: false);
       final token = tokenProvider.token;
-      NawlenProvider nawlenProvider = NawlenProvider();
       List<DetailsPinding> dbl = await nawlenProvider.getDetailsPinding(token);
       Nawlen nawlen = await nawlenProvider.getNawlenData(token);
       setState(() {
@@ -113,7 +113,8 @@ String statusy='';
       children: [
         InkWell(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
+            if(nawlenProvider.l.isNotEmpty){
+              Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => NawlenList(
                       title: 'في الطريق',
                       nawlenValue: nawlenValueList,
@@ -121,6 +122,11 @@ String statusy='';
                       tahmelLocation: tahmelLocationList,
                       carName: carNameList,
                     )));
+            }else{
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (ctx)=> const NoDataScreen())
+              );
+            }
           },
           child: Container(
             padding: const EdgeInsets.all(8),
@@ -151,8 +157,9 @@ String statusy='';
           ),
         ),
         InkWell(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
+          onTap: () async{
+            if(nawlenProvider.l.isNotEmpty){
+              Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => NawlenList(
                       title: 'باقي الناواين',
                       nawlenValue: nawlenValueListy,
@@ -160,6 +167,11 @@ String statusy='';
                       tahmelLocation: tahmelLocationListy,
                       carName: carNameListy,
                     )));
+            }else{
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (ctx)=> const NoDataScreen())
+              );
+            }
           },
           child: Container(
             padding: const EdgeInsets.all(8),
