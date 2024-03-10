@@ -130,7 +130,7 @@ String statusy='';
                     )));
             }else{
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (ctx)=> const NoDataScreen())
+                MaterialPageRoute(builder: (ctx)=> const NoDataScreen(title: 'في الطريق',))
               );
             }
             }
@@ -177,7 +177,7 @@ String statusy='';
                     )));
             }else{
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (ctx)=> const NoDataScreen())
+                MaterialPageRoute(builder: (ctx)=> const NoDataScreen(title: 'باقي الناولين',))
               );
             }
             }

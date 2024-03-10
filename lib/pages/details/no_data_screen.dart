@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/const.dart';
 
 class NoDataScreen extends StatelessWidget {
-  const NoDataScreen({super.key});
-
+  const NoDataScreen({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('No Data'),
+        title:  Text(title),
+        backgroundColor: const Color.fromARGB(255, 23, 24, 33),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(
-              Icons.error_outline,
+              Icons.hourglass_empty_rounded,
               size: 80,
               color: Colors.grey,
             ),
             const SizedBox(height: 20),
             const Text(
-              'No data available',
+              'لا يوجد ناولون حتى الان',
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.grey,
@@ -31,7 +33,12 @@ class NoDataScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Go Back'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: cardBackgroundColor,
+              ),
+              child: const Text('الى الخلف',style: TextStyle(
+                color: Colors.deepOrange
+              ),),
             ),
           ],
         ),
