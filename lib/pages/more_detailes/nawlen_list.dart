@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NawlenList extends StatelessWidget {
   const NawlenList({
@@ -35,10 +36,13 @@ class NawlenList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Card(
             elevation: 2,
-            margin: const EdgeInsets.all(10),
+            margin: EdgeInsets.symmetric(
+              vertical: 10.h,
+              horizontal: 10.w
+              ),
             color: cardBackgroundColor,
             child: Table(
-              defaultColumnWidth: const FixedColumnWidth(100.0),
+              defaultColumnWidth:  FixedColumnWidth(85.w),
               border: TableBorder.all(),
               children: [
                 TableRow(
@@ -46,32 +50,32 @@ class NawlenList extends StatelessWidget {
                     TableCell(
                       child: Container(
                         color: cardBackgroundColor,
-                        height: 100,
-                        width: 100,
+                        height: 100.h,
+                        width: 100.w,
                         child: const Center(child: Text('قيمة الناولون')),
                       ),
                     ),
                     TableCell(
                       child: Container(
                         color: cardBackgroundColor,
-                        height: 100,
-                        width: 100,
+                        height: 100.h,
+                        width: 100.w,
                         child: const Center(child: Text('السيارة')),
                       ),
                     ),
                     TableCell(
                       child: Container(
                         color: cardBackgroundColor,
-                        height: 100,
-                        width: 100,
+                        height: 100.h,
+                        width: 100.w,
                         child: const Center(child: Text('مكان التحميل')),
                       ),
                     ),
                     TableCell(
                       child: Container(
                         color: cardBackgroundColor,
-                        height: 100,
-                        width: 100,
+                        height: 100.h,
+                        width: 100.w,
                         child: const Center(child: Text('مكان التعتيق')),
                       ),
                     ),
@@ -82,8 +86,8 @@ class NawlenList extends StatelessWidget {
                     TableCell(
                       child: Container(
                         color: cardBackgroundColor,
-                        height: 100,
-                        width: 100,
+                        height: 100.h,
+                        width: 100.w,
                         child: Center(
                             child: Text(
                           nawlenValue.toString(),
@@ -94,8 +98,8 @@ class NawlenList extends StatelessWidget {
                     TableCell(
                       child: Container(
                         color: cardBackgroundColor,
-                        height: 100,
-                        width: 100,
+                        height: 100.h,
+                        width: 100.w,
                         child: Center(
                             child: Text(
                           carName[index],
@@ -106,8 +110,8 @@ class NawlenList extends StatelessWidget {
                     TableCell(
                       child: Container(
                         color: cardBackgroundColor,
-                        height: 100,
-                        width: 100,
+                        height: 100.h,
+                        width: 100.w,
                         child: Center(
                             child: Text(
                           tahmelLocation[index],
@@ -118,8 +122,8 @@ class NawlenList extends StatelessWidget {
                     TableCell(
                       child: Container(
                         color: cardBackgroundColor,
-                        height: 100,
-                        width: 100,
+                        height: 100.h,
+                        width: 100.w,
                         child: Center(
                             child: Text(
                           tatekLocation[index],
