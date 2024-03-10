@@ -4,33 +4,37 @@ class InventoryDetails with ChangeNotifier {
   int? id;
   int? carPartId;
   double? totalPrice;
-  double? carPartPrice;
   int? quantity;
   String? carpartname;
   String? carpartlocation;
-  String? status;
-  Color? color;
+  String? carPartName; 
+  String? carPartLocation; 
+  String? carPartCode; 
 
-  InventoryDetails(
-      {this.id,
-      this.carPartId,
-      this.totalPrice,
-      this.carPartPrice,
-      this.quantity,
-      this.carpartname,
-      this.carpartlocation,
-      this.status,
-      this.color});
+  InventoryDetails({
+    this.id,
+    this.carPartId,
+    this.totalPrice,
+    this.quantity,
+    this.carpartname,
+    this.carpartlocation,
+    this.carPartName,
+    this.carPartLocation,
+    this.carPartCode,
+  });
 
   factory InventoryDetails.fromJson(Map<String, dynamic> json) {
+    var carPart = json['0']['storeNawlon'][0]['car_part'];
     return InventoryDetails(
-      id: json['id'],
-      carPartId: json['car_part_id'],
-      totalPrice: json['totalPrice'].toDouble(),
-      carPartPrice: json['car_part_price'].toDouble(),
-      quantity: json['quantity'],
-      carpartlocation:json['car_part']['location'],
-      carpartname: json['car_part']['name'],
+      id: json['0']['storeNawlon'][0]['id'],
+      carPartId: json['0']['storeNawlon'][0]['car_part_id'],
+      totalPrice: json['0']['storeNawlon'][0]['totalPrice'].toDouble(),
+      quantity: json['0']['storeNawlon'][0]['quantity'],
+      carpartname: carPart['name'],
+      carpartlocation: carPart['location'],
+      carPartName: carPart['name'],
+      carPartLocation: carPart['location'],
+      carPartCode: carPart['code'],
     );
   }
 }
