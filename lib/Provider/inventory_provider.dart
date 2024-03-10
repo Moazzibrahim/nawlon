@@ -43,15 +43,15 @@ class InventoryProvider with ChangeNotifier {
                 carpartlocation: item['car_part']['location'],
                 color: cardBackgroundColor,
               ),
-              InventoryDetails(
-                id: item['id'],
-                carPartId: item['car_part_id'],
-                totalPrice: double.parse(item['totalPrice'].toString()),
-                quantity: item['quantity'],
-                carpartname: item['car_part']['name'],
-                carpartlocation: item['car_part']['location'],
-                color: cardBackgroundColor,
-              ),
+              // InventoryDetails(
+              //   id: item['id'],
+              //   carPartId: item['car_part_id'],
+              //   totalPrice: double.parse(item['totalPrice'].toString()),
+              //   quantity: item['quantity'],
+              //   carpartname: item['car_part']['name'],
+              //   carpartlocation: item['car_part']['location'],
+              //   color: cardBackgroundColor,
+              // ),
             ];
           }
 
