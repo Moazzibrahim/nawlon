@@ -62,27 +62,21 @@ class _GridInventoryState extends State<GridInventory> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Row(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("${inventoryProvider.allInventory}"),
-                              index == 0
-                                  ? Text(
-                                      'المنتج: ${inventoryItem.carpartname}',
-                                      style: const TextStyle(fontSize: 20),
-                                    )
-                                  : index == 1
-                                      ? Text(
-                                          'المكان: ${inventoryItem.carpartlocation}',
-                                          style: const TextStyle(fontSize: 20),
-                                        )
-                                      : index == 2
-                                          ? Text(
-                                              'الكمية: ${inventoryItem.quantity}',
-                                              style:
-                                                  const TextStyle(fontSize: 20),
-                                            )
-                                          : const Text('unavailable')
+                              Text(
+                                'Car Part Name: ${inventoryItem.carpartname}',
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                              Text(
+                                'Location: ${inventoryItem.carpartlocation}',
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                              Text(
+                                'Quantity: ${inventoryItem.quantity}',
+                                style: const TextStyle(fontSize: 20),
+                              ),
                             ],
                           ),
                         );
