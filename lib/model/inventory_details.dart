@@ -7,9 +7,10 @@ class InventoryDetails with ChangeNotifier {
   int? quantity;
   String? carpartname;
   String? carpartlocation;
-  String? carPartName; 
-  String? carPartLocation; 
-  String? carPartCode; 
+  String? carPartName;
+  String? carPartLocation;
+  String? carPartCode;
+  Color? color;
 
   InventoryDetails({
     this.id,
@@ -21,6 +22,7 @@ class InventoryDetails with ChangeNotifier {
     this.carPartName,
     this.carPartLocation,
     this.carPartCode,
+    this.color,
   });
 
   factory InventoryDetails.fromJson(Map<String, dynamic> json) {

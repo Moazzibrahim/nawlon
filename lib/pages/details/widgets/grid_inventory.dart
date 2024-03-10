@@ -42,7 +42,7 @@ class _GridInventoryState extends State<GridInventory> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 10),
                   Expanded(
                     child: GridView.builder(
                       gridDelegate:
@@ -58,24 +58,35 @@ class _GridInventoryState extends State<GridInventory> {
                         final inventoryItem =
                             inventoryProvider.allInventory[index];
                         return Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(7),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
+                            color:
+                                cardBackgroundColor, // Set a color for decoration
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Car Part Name: ${inventoryItem.carpartname}',
-                                style: const TextStyle(fontSize: 20),
+                                ' المنتج: ${inventoryItem.carpartname}',
+                                style: const TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w500),
+                              ),
+                              const SizedBox(
+                                height: 3,
                               ),
                               Text(
-                                'Location: ${inventoryItem.carpartlocation}',
-                                style: const TextStyle(fontSize: 20),
+                                'المكان: ${inventoryItem.carpartlocation}',
+                                style: const TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w500),
+                              ),
+                              const SizedBox(
+                                height: 3,
                               ),
                               Text(
-                                'Quantity: ${inventoryItem.quantity}',
-                                style: const TextStyle(fontSize: 20),
+                                'الكمية: ${inventoryItem.quantity}',
+                                style: const TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w500),
                               ),
                             ],
                           ),

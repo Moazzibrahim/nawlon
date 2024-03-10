@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/model/inventory_details.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,7 @@ class InventoryProvider with ChangeNotifier {
                 quantity: item['quantity'],
                 carpartname: item['car_part']['name'],
                 carpartlocation: item['car_part']['location'],
+                color: cardBackgroundColor,
               ),
               InventoryDetails(
                 id: item['id'],
@@ -48,6 +50,7 @@ class InventoryProvider with ChangeNotifier {
                 quantity: item['quantity'],
                 carpartname: item['car_part']['name'],
                 carpartlocation: item['car_part']['location'],
+                color: cardBackgroundColor,
               ),
             ];
           }
