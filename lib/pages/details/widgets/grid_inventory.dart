@@ -6,7 +6,8 @@ import 'package:provider/provider.dart';
 class GridInventory extends StatefulWidget {
   final String title;
 
-  const GridInventory({super.key, 
+  const GridInventory({
+    super.key,
     required this.title,
   });
 
@@ -66,35 +67,71 @@ class _GridInventoryState extends State<GridInventory> {
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                ' المنتج: ${inventoryItem.carpartname}',
-                                style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'المنتج:  ${inventoryItem.carpartname.toString()}',
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(
-                                height: 3,
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'المكان:  ${inventoryItem.carpartlocation.toString()}',
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'المكان: ${inventoryItem.carpartlocation}',
-                                style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'الكمية: ',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                      width: 5), // Adjust the width as needed
+                                  Expanded(
+                                    child: Text(
+                                      '${inventoryItem.quantity}',
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(
-                                height: 3,
-                              ),
-                              Text(
-                                'الكمية: ${inventoryItem.quantity}',
-                                style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 3,
-                              ),
-                              Text(
-                                "السعر: ${inventoryItem.pricePerItem}",
-                                style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'متوسط السعر: ',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                      width: 5), // Adjust the width as needed
+                                  Expanded(
+                                    child: Text(
+                                      '${inventoryItem.pricePerItem}',
+                                      style: const TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
