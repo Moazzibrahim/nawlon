@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/Provider/cars_providers.dart';
 import 'package:flutter_dashboard/model/cars.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
-import 'package:flutter_dashboard/providers/cars_providers.dart';
 import 'package:provider/provider.dart';
 
 class GridCarsDetails extends StatefulWidget {
