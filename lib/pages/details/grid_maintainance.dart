@@ -10,11 +10,11 @@ class Maintainance extends StatelessWidget {
   final String title;
   final maintainanceDetailsList = [
     Maintainancedetails(
-        name: "اسم السيارة", date: "تاريخ الصيانة", money: "التكلفة"),
+        name: "اسم السيارة", date: "تاريخ الصيانة", ),
     Maintainancedetails(
-        name: "اسم السيارة", date: "تاريخ الصيانة", money: "التكلفة"),
+        name: "اسم السيارة", date: "تاريخ الصيانة", ),
     Maintainancedetails(
-        name: "اسم السيارة", date: "تاريخ الصيانة", money: "التكلفة"),
+        name: "اسم السيارة", date: "تاريخ الصيانة",),
   ];
   Maintainance({
     Key? key,
