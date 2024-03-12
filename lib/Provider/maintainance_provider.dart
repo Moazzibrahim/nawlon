@@ -41,6 +41,7 @@ class Maintainanceprovider with ChangeNotifier {
             );
           }
           lists = allmaintainance;
+          notifyListeners();
         }
       }
     } catch (e) {}
