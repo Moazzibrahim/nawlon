@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 
 class Maintainanceprovider with ChangeNotifier {
   List<Maintainancedetails> allmaintainance = [];
+
   Future<void> getMaintainancedata(BuildContext context) async {
     String apiUrl = 'https://login.nawlon.org/api/Car/maintanence';
     try {
@@ -22,15 +23,16 @@ class Maintainanceprovider with ChangeNotifier {
       });
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
-        log("$responseData");
-        log("Api is successful");
+        print("$responseData");
+        print("Api is successful");
 
         final List<dynamic> data0 = responseData['0']['maintanence'];
         if (data0.isNotEmpty) {
           List<Maintainancedetails> lists = [];
           for (var item in data0) {
             String mainname = item['car']['cars_name'];
-            String date = item['car']['created_at'];
+            DateTime date = DateTime.parse(
+                item['car']['created_at']); // Parsing date string
             int price = item['maintenances_price'];
             lists.add(
               Maintainancedetails(
