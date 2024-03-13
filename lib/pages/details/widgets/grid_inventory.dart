@@ -118,6 +118,7 @@ class _GridInventoryState extends State<GridInventory> {
                                   ),
                                 ],
                               ),
+                             
                             ],
                           ),
                         );

@@ -105,6 +105,22 @@ class _MaintainanceState extends State<Maintainance> {
                                 ),
                                 textDirection: TextDirection.rtl,
                               ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                    child: const Text(
+                                      "تفاصيل",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.deepOrange),
+                                      textDirection: TextDirection.rtl,
+                                    ),
+                                    onPressed: () {},
+                                  )
+                                ],
+                              )
                             ],
                           ),
                         );
