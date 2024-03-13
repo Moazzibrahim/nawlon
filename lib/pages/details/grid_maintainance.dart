@@ -120,8 +120,18 @@ class _MaintainanceState extends State<Maintainance> {
                                     ),
                                     onPressed: () {
                                       Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (ctx)=> const MaintainanceDetailsScreen())
-                                      );
+                                          MaterialPageRoute(
+                                              builder: (ctx) =>
+                                                  MaintainanceDetailsScreen(
+                                                    title: widget.title,
+                                                    dis: maintainanceItem
+                                                        .discription,
+                                                    id: maintainanceItem.id,
+                                                    carType: maintainanceItem
+                                                        .carType,
+                                                    brand:
+                                                        maintainanceItem.brand,
+                                                  )));
                                     },
                                   )
                                 ],

@@ -34,11 +34,25 @@ class Maintainanceprovider with ChangeNotifier {
             DateTime date = DateTime.parse(
                 item['car']['created_at']); // Parsing date string
             int price = item['maintenances_price'];
+            String dis = item['description'];
+            int id =item['id'];
+            String carType=item['car']['car_type'];
+            String brand = item['car']['brand'];
+            String servicesTitle=item['sevices_maintanenc']['servicesTitle'];
+            // int servicesPrice = item['sevices_maintanenc']['servicesPrice'];
+            // String carPartsName = item['car_parts']['name'];
             lists.add(
               Maintainancedetails(
                 date: date,
                 name: mainname,
                 price: price,
+                discription: dis,
+                id: id,
+                carType: carType,
+                brand: brand,
+                servicesTitle:servicesTitle,
+                // servicesPrice: servicesPrice,
+                // carPartsName: carPartsName,
               ),
             );
           }

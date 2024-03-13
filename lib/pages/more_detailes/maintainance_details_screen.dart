@@ -3,13 +3,19 @@ import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MaintainanceDetailsScreen extends StatelessWidget {
-  const MaintainanceDetailsScreen({super.key});
-
+  const MaintainanceDetailsScreen({super.key, required this.title, required this.dis, required this.id, required this.carType, required this.brand});
+  final String title;
+  final String dis;
+  final int id;
+  final String carType;
+  final String brand;
+  // final String carPartsName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBar,
+        title: Text(title),
       ),
       body: Stack(children: [
         Column(
@@ -48,13 +54,13 @@ class MaintainanceDetailsScreen extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(10),
               color: cardBackgroundColor,
-              child: const Row(
+              child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('#INV0005'),
+                      Text('#INV$id'),
                       Text('date begin:'),
                       Text('date finish:'),
                     ],
@@ -64,14 +70,24 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                     children: [
                       Text('car details: '),
                       Text('car name:'),
-                      Text('car model'),
-                      Text('car num:'),
+                      Row(
+                        children: [
+                          const Text('car model: '),
+                          Text(brand),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Text('car type: '),
+                          Text(carType),
+                        ],
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
-             Container(
+            Container(
           width: 400.w,
           height: 175.h,
           padding: const EdgeInsets.all(10),
@@ -80,16 +96,16 @@ class MaintainanceDetailsScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             color: cardBackgroundColor,
           ),
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Text('Description: '),
+                  const Text('Description: '),
                   Expanded(
                     child: Text(
-                      'tasle7 w rash rafraf amamy lwko3 7ads alem 3la tare2 el kahra el sa7raway',
+                      dis,
                       overflow: TextOverflow.visible,
                       maxLines: 3,
                       softWrap: true,
@@ -98,15 +114,15 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                 ],
               ),
               Row(
-                children: [Text('ket3 8yar name: '), Text('rafraf amamy')],
+                children: [const Text('ket3 8yar name: '), Text('carPartsName')],
               ),
-              Row(
+              const Row(
                 children: [
                   Text('ket3 8yar num: '),
                   Text('1234'),
                 ],
               ),
-              Row(
+              const Row(
                 children: [
                   Text('Syana Price: '),
                   Text('500'),
