@@ -67,7 +67,7 @@ class _GridInventoryState extends State<GridInventory> {
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            //crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,8 +75,10 @@ class _GridInventoryState extends State<GridInventory> {
                                   Text(
                                     'المنتج:  ${inventoryItem.carpartname.toString()}',
                                     style: const TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textDirection: TextDirection.rtl,
                                   ),
                                 ],
                               ),
@@ -88,48 +90,31 @@ class _GridInventoryState extends State<GridInventory> {
                                     style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
+                                    textDirection: TextDirection.rtl,
                                   ),
                                 ],
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Text(
-                                    'الكمية: ',
-                                    style: TextStyle(
+                                  Text(
+                                    'الكمية: ${inventoryItem.quantity}',
+                                    style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                      width: 5), // Adjust the width as needed
-                                  Expanded(
-                                    child: Text(
-                                      '${inventoryItem.quantity}',
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                    textDirection: TextDirection.rtl,
                                   ),
                                 ],
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Text(
-                                    'متوسط السعر: ',
-                                    style: TextStyle(
+                                  Text(
+                                    'متوسط السعر: ${inventoryItem.pricePerItem}',
+                                    style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                      width: 5), // Adjust the width as needed
-                                  Expanded(
-                                    child: Text(
-                                      '${inventoryItem.pricePerItem}',
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                    textDirection: TextDirection.rtl,
                                   ),
                                 ],
                               ),
