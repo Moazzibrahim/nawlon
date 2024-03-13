@@ -4,18 +4,26 @@ import 'package:flutter/material.dart';
 class Maintainancedetails with ChangeNotifier {
   String? name;
   String? date;
-  double? price;
+  int? price;
   Maintainancedetails({
     this.name,
     this.date,
     this.price,
   });
   factory Maintainancedetails.fromJson(Map<String, dynamic> json) {
-    var carparts = json['0']['maintanence']['car_parts'];
-    return Maintainancedetails(
-      name: json['0']['maintanence'][0]['car']['cars_name'],
-      date: json['0']['maintanence'][0]['created_at'],
-      price: json['0']['maintanence'][0]['maintenances_price'],
-    );
+    List<dynamic> maintenanceList = json['0']['maintenance'];
+
+    if (maintenanceList.isNotEmpty) {
+      // Parsing the first maintenance entry
+      var firstMaintenance = maintenanceList[0];
+      return Maintainancedetails(
+        name: firstMaintenance['car']['cars_name'],
+        date: firstMaintenance['created_at'],
+        price: firstMaintenance['maintenances_price'],
+      );
+    } else {
+      // Handling the case when no maintenance data is available
+      return Maintainancedetails();
+    }
   }
 }

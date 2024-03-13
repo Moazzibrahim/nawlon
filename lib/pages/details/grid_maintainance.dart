@@ -1,9 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
-import 'package:flutter_dashboard/const.dart';
-import 'package:flutter_dashboard/responsive.dart';
-import 'package:flutter_dashboard/widgets/custom_card.dart';
+// ignore_for_file: avoid_print
 
+import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/Provider/maintainance_provider.dart';
+import 'package:flutter_dashboard/const.dart';
+import 'package:provider/provider.dart';
 
 class Maintainance extends StatefulWidget {
   final String title;
@@ -18,8 +18,17 @@ class Maintainance extends StatefulWidget {
 }
 
 class _MaintainanceState extends State<Maintainance> {
-  final maintainanceDetailsList = [];
-
+  @override
+  void initState() {
+    super.initState();
+    // Fetch car data when the widget initializes
+    Provider.of<Maintainanceprovider>(context, listen: false)
+        .getMaintainancedata(context)
+        .catchError((error) {
+      // Handle errors here, e.g., show an error message
+      print('Error fetching maintainance data: $error');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,72 +38,83 @@ class _MaintainanceState extends State<Maintainance> {
         title: Text(widget.title),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: SizedBox(
-          height: 900,
-          width: 600,
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: Responsive.isMobile(context) ? 2 : 4,
-              crossAxisSpacing: !Responsive.isMobile(context) ? 17 : 12,
-              mainAxisSpacing: 16.0,
-            ),
-            itemCount: maintainanceDetailsList.length,
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {
-              return CustomCard(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5, bottom: 5),
-                        child: Text(
-                          maintainanceDetailsList[index].name!,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text(
-                          maintainanceDetailsList[index].date.toString(),
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text(
-                          maintainanceDetailsList[index].price.toString(),
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "تفاصيل",
-                          style: TextStyle(color: Colors.deepOrange),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+        padding: const EdgeInsets.all(15),
+        child: Consumer<Maintainanceprovider>(
+          builder: (context, maintainanceProvider, _) {
+            if (maintainanceProvider.allmaintainance.isEmpty) {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
-            },
-          ),
+            } else {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 20,
+                        childAspectRatio: 0.8,
+                      ),
+                      itemCount: maintainanceProvider.allmaintainance.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        final maintainanceItem =
+                            maintainanceProvider.allmaintainance[index];
+                        return Container(
+                          padding: const EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: cardBackgroundColor,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            //crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'الاسم:  ${maintainanceItem.name}',
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                // Set text direction explicitly for right-to-left languages
+                                textDirection: TextDirection.rtl,
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                'التاريخ:  ${maintainanceItem.date}',
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textDirection: TextDirection.rtl,
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                'السعر: ${maintainanceItem.price}',
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textDirection: TextDirection.rtl,
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
         ),
       ),
     );

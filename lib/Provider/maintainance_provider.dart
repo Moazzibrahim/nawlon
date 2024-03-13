@@ -10,9 +10,8 @@ import 'package:http/http.dart' as http;
 
 class Maintainanceprovider with ChangeNotifier {
   List<Maintainancedetails> allmaintainance = [];
-
   Future<void> getMaintainancedata(BuildContext context) async {
-    String apiUrl = 'http://login.nawlon.org/api/Car/maintanence';
+    String apiUrl = 'https://login.nawlon.org/api/Car/maintanence';
     try {
       final tokenProvider = Provider.of<TokenModel>(context, listen: false);
       final token = tokenProvider.token;
@@ -32,7 +31,7 @@ class Maintainanceprovider with ChangeNotifier {
           for (var item in data0) {
             String mainname = item['car']['cars_name'];
             String date = item['car']['created_at'];
-            double price = item['maintenances_price'];
+            int price = item['maintenances_price'];
             lists.add(
               Maintainancedetails(
                 date: date,
@@ -41,7 +40,8 @@ class Maintainanceprovider with ChangeNotifier {
               ),
             );
           }
-          lists = allmaintainance;
+          // Assign lists to allmaintainance instead of vice versa
+          allmaintainance = lists;
           notifyListeners();
         } else {
           log('No data available in the response');
