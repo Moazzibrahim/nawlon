@@ -43,7 +43,12 @@ class Maintainanceprovider with ChangeNotifier {
           }
           lists = allmaintainance;
           notifyListeners();
+        } else {
+          log('No data available in the response');
         }
+      } else {
+        throw Exception(
+            'Failed to load maintainance data: ${response.statusCode}');
       }
     } catch (e) {
       log('Error:$e');
