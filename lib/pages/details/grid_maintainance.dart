@@ -1,32 +1,32 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
-import 'package:flutter_dashboard/model/maintainance_details.dart';
-
 import 'package:flutter_dashboard/responsive.dart';
 import 'package:flutter_dashboard/widgets/custom_card.dart';
 
-class Maintainance extends StatelessWidget {
+
+class Maintainance extends StatefulWidget {
   final String title;
-  final maintainanceDetailsList = [
-    Maintainancedetails(
-        name: "اسم السيارة", date: "تاريخ الصيانة", ),
-    Maintainancedetails(
-        name: "اسم السيارة", date: "تاريخ الصيانة", ),
-    Maintainancedetails(
-        name: "اسم السيارة", date: "تاريخ الصيانة",),
-  ];
-  Maintainance({
+
+  const Maintainance({
     Key? key,
     required this.title,
   }) : super(key: key);
+
+  @override
+  State<Maintainance> createState() => _MaintainanceState();
+}
+
+class _MaintainanceState extends State<Maintainance> {
+  final maintainanceDetailsList = [];
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBar,
-        title: Text(title),
+        title: Text(widget.title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -52,7 +52,7 @@ class Maintainance extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 5),
                         child: Text(
-                          maintainanceDetailsList[index].name,
+                          maintainanceDetailsList[index].name!,
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 22,
@@ -63,7 +63,7 @@ class Maintainance extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Text(
-                          maintainanceDetailsList[index].date,
+                          maintainanceDetailsList[index].date.toString(),
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 17,
@@ -74,7 +74,7 @@ class Maintainance extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Text(
-                          maintainanceDetailsList[index].money,
+                          maintainanceDetailsList[index].price.toString(),
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 17,

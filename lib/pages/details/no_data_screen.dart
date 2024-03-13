@@ -22,7 +22,7 @@ class NoDataScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'لا يوجد ناولون حتى الان',
+              'لا يوجد معلومات حتى الان',
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.grey,

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
 import 'package:flutter_dashboard/model/maintainance_details.dart';
@@ -22,15 +23,15 @@ class Maintainanceprovider with ChangeNotifier {
       });
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
-        print("$responseData");
-        print("Api is successful");
+        log("$responseData");
+        log("Api is successful");
 
         final List<dynamic> data0 = responseData['0']['maintanence'];
         if (data0.isNotEmpty) {
           List<Maintainancedetails> lists = [];
           for (var item in data0) {
             String mainname = item['car']['cars_name'];
-            DateTime date = item['car']['created_at'];
+            String date = item['car']['created_at'];
             double price = item['maintenances_price'];
             lists.add(
               Maintainancedetails(
@@ -44,6 +45,8 @@ class Maintainanceprovider with ChangeNotifier {
           notifyListeners();
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      log('Error:$e');
+    }
   }
 }

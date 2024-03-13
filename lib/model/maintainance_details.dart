@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Maintainancedetails with ChangeNotifier {
   String? name;
-  DateTime? date;
+  String? date;
   double? price;
   Maintainancedetails({
     this.name,
