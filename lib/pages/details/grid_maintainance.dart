@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Provider/maintainance_provider.dart';
 import 'package:flutter_dashboard/const.dart';
+import 'package:flutter_dashboard/pages/more_detailes/maintainance_details_screen.dart';
 import 'package:provider/provider.dart';
 
 class Maintainance extends StatefulWidget {
@@ -117,7 +118,11 @@ class _MaintainanceState extends State<Maintainance> {
                                           color: Colors.deepOrange),
                                       textDirection: TextDirection.rtl,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (ctx)=> const MaintainanceDetailsScreen())
+                                      );
+                                    },
                                   )
                                 ],
                               )
