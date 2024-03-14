@@ -61,15 +61,15 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text('#INV$id'),
-                      Text('date begin:'),
-                      Text('date finish:'),
+                      const Text('date begin:'),
+                      const Text('date finish:'),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('car details: '),
-                      Text('car name:'),
+                      const Text('car details: '),
+                      const Text('car name:'),
                       Row(
                         children: [
                           const Text('car model: '),
@@ -113,8 +113,8 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [const Text('ket3 8yar name: '), Text('carPartsName')],
+              const Row(
+                children: [Text('ket3 8yar name: '), Text('carPartsName')],
               ),
               const Row(
                 children: [
