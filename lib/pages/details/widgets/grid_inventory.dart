@@ -110,7 +110,7 @@ class _GridInventoryState extends State<GridInventory> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'متوسط السعر: ${inventoryItem.pricePerItem}',
+                                    'متوسط السعر: ${inventoryItem.pricePerItem!.ceilToDouble()}',
                                     style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
@@ -118,7 +118,6 @@ class _GridInventoryState extends State<GridInventory> {
                                   ),
                                 ],
                               ),
-                             
                             ],
                           ),
                         );
