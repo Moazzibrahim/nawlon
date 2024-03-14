@@ -38,7 +38,7 @@ class Maintainanceprovider with ChangeNotifier {
             int id =item['id'];
             String carType=item['car']['car_type'];
             String brand = item['car']['brand'];
-            String servicesTitle=item['sevices_maintanenc']['servicesTitle'];
+            // String servicesTitle=item['sevices_maintanenc']['servicesTitle'];
             // int servicesPrice = item['sevices_maintanenc']['servicesPrice'];
             // String carPartsName = item['car_parts']['name'];
             lists.add(
@@ -50,7 +50,7 @@ class Maintainanceprovider with ChangeNotifier {
                 id: id,
                 carType: carType,
                 brand: brand,
-                servicesTitle:servicesTitle,
+                // servicesTitle:servicesTitle,
                 // servicesPrice: servicesPrice,
                 // carPartsName: carPartsName,
               ),

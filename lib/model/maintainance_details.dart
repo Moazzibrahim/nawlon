@@ -8,7 +8,7 @@ class Maintainancedetails with ChangeNotifier {
   final int id;
   final String carType;
   final String brand;
-  final String servicesTitle;
+  // final String servicesTitle;
   // final int servicesPrice;
   // final String carPartsName;
 
@@ -20,7 +20,7 @@ class Maintainancedetails with ChangeNotifier {
     required this.id,
     required this.carType,
     required this.brand,
-    required this.servicesTitle,
+    // required this.servicesTitle,
     // required this.servicesPrice,
     // required this.carPartsName
   });
@@ -40,7 +40,7 @@ class Maintainancedetails with ChangeNotifier {
         id: firstMaintenance['id'],
         carType: firstMaintenance['car']['car_type'],
         brand: firstMaintenance['car']['brand'],
-        servicesTitle: firstMaintenance['sevices_maintanenc']['servicesTitle'],
+        // servicesTitle: firstMaintenance['sevices_maintanenc']['servicesTitle'],
         // servicesPrice: firstMaintenance['sevices_maintanenc']['servicesPrice'],
         // carPartsName: firstMaintenance['car_parts']['name'],
       );
@@ -53,7 +53,7 @@ class Maintainancedetails with ChangeNotifier {
           id: 0,
           carType: '',
           brand: '',
-          servicesTitle: '',
+          // servicesTitle: '',
           // servicesPrice: 0,
           // carPartsName: ''
           );
