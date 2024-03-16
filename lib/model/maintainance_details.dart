@@ -83,6 +83,6 @@ class ServicesMaintainnanceList {
 
   factory ServicesMaintainnanceList.fromJson(Map<String, dynamic> json) =>
       ServicesMaintainnanceList(
-        servicesMaintainnanceList: json['0']['maintanence']['servicesMainta'],
+        servicesMaintainnanceList: json['1']['maintanenceSevices'],
         );
 }
