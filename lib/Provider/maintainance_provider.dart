@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 
 class Maintainanceprovider with ChangeNotifier {
   List<Maintainancedetails> allmaintainance = [];
-  List<ServicesMaintainnance> allServices=[];
+  List<Maintainancedetails> allServices = [];
 
   Future<void> getMaintainancedata(BuildContext context) async {
     String apiUrl = 'https://login.nawlon.org/api/Car/maintanence';
@@ -28,19 +28,17 @@ class Maintainanceprovider with ChangeNotifier {
         print("Api is successful");
 
         final List<dynamic> data0 = responseData['0']['maintanence'];
-            
+
         if (data0.isNotEmpty) {
           List<Maintainancedetails> lists = [];
           for (var item in data0) {
             String mainname = item['car']['cars_name'];
-            String date = 
-                item['created_at']; // Parsing date string
+            String date = item['created_at']; // Parsing date string
             int price = item['maintenances_price'];
             String dis = item['description'];
             int id = item['id'];
             String carType = item['car']['car_type'];
             String brand = item['car']['brand'];
-            
 
             lists.add(
               Maintainancedetails(
@@ -71,9 +69,9 @@ class Maintainanceprovider with ChangeNotifier {
     }
   }
 
-  Future<void> getServicesMaintainance(BuildContext context) async{
+  Future<void> getServicesMaintainance(BuildContext context) async {
     String apiUrl = 'https://login.nawlon.org/api/Car/maintanence';
-    try{
+    try {
       final tokenProvider = Provider.of<TokenModel>(context, listen: false);
       final token = tokenProvider.token;
       final response = await http.get(Uri.parse(apiUrl), headers: {
@@ -81,18 +79,29 @@ class Maintainanceprovider with ChangeNotifier {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       });
-      if(response.statusCode==200){
+      if (response.statusCode == 200) {
         log('services Maintainance data is fetched');
         final responseData = jsonDecode(response.body);
-        ServicesMaintainnanceList sml = ServicesMaintainnanceList.fromJson(responseData);
-        List<ServicesMaintainnance> l = sml.servicesMaintainnanceList.map((e) => ServicesMaintainnance.fromJson(e)).toList();
-        log('all services list : $l');
-        allServices=l;
+        final List<dynamic> data1 = responseData['1']['maintanenceSevices'];
+        if (data1.isNotEmpty) {
+          List<Maintainancedetails> list2 = [];
+          for (var element in data1) {
+            String servicetitle = element['servicesTitle'];
+            String serviceprice = element['servicesPrice'];
+            list2.add(Maintainancedetails(
+              servicesPrice: serviceprice,
+              servicesTitle: servicetitle,
+            ));
+          }
+          allServices = list2;
+          notifyListeners();
+        }
+
         notifyListeners();
-      }else{
+      } else {
         log('status code: ${response.statusCode}');
       }
-    }catch(e){
+    } catch (e) {
       log('Error on fetching Maintainance: $e');
     }
   }

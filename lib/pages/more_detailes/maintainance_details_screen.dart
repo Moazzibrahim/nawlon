@@ -3,28 +3,30 @@ import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MaintainanceDetailsScreen extends StatelessWidget {
-  const MaintainanceDetailsScreen(
-      {super.key,
-      required this.title,
-      required this.dis,
-      required this.id,
-      required this.carType,
-      required this.brand,
-      required this.servicesTitle
-      });
-  final String title;
-  final String dis;
-  final int id;
-  final String carType;
-  final String brand;
-  final String servicesTitle;
-  
+  const MaintainanceDetailsScreen({
+    super.key,
+    this.title,
+    this.dis,
+    this.id,
+    this.carType,
+    this.brand,
+    this.servicesTitle,
+    this.serviceprice,
+  });
+  final String? title;
+  final String? dis;
+  final int? id;
+  final String? carType;
+  final String? brand;
+  final String? servicesTitle;
+  final String? serviceprice;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBar,
-        title: Text(title),
+        title: Text(title!),
       ),
       body: Stack(children: [
         Column(
@@ -82,13 +84,13 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                       Row(
                         children: [
                           const Text('car model: '),
-                          Text(brand),
+                          Text(brand!),
                         ],
                       ),
                       Row(
                         children: [
                           const Text('car type: '),
-                          Text(carType),
+                          Text(carType!),
                         ],
                       ),
                     ],
@@ -114,7 +116,7 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                       const Text('Description: '),
                       Expanded(
                         child: Text(
-                          dis,
+                          dis!,
                           overflow: TextOverflow.visible,
                           maxLines: 3,
                           softWrap: true,
@@ -154,21 +156,21 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('service:'),
-                      Text(servicesTitle),
-                      Text('msan3ya'),
-                      Text('3afsha'),
-                      Text('swa2a'),
+                      const Text('service:'),
+                      Text(servicesTitle!),
+                      // const Text('msan3ya'),
+                      // const Text('3afsha'),
+                      // const Text('swa2a'),
                     ],
                   ),
-                  const Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('services price'),
-                      Text('200'),
-                      Text('523'),
-                      Text('100233'),
-                      Text('11111'),
+                      const Text('services price'),
+                      Text(serviceprice!),
+                      // const Text('523'),
+                      // const Text('100233'),
+                      // const Text('11111'),
                     ],
                   )
                 ],
