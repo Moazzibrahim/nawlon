@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/Provider/maintainance_provider.dart';
 import 'package:flutter_dashboard/const.dart';
@@ -29,6 +28,12 @@ class _MaintainanceState extends State<Maintainance> {
       // Handle errors here, e.g., show an error message
       print('Error fetching maintainance data: $error');
     });
+    // Provider.of<Maintainanceprovider>(context, listen: false)
+    //     .getServicesMaintainance(context)
+    //     .catchError((error) {
+    //   // Handle errors here, e.g., show an error message
+    //   print('Error fetching services data: $error');
+    // });
   }
 
   @override
@@ -65,6 +70,7 @@ class _MaintainanceState extends State<Maintainance> {
                       itemBuilder: (BuildContext context, int index) {
                         final maintainanceItem =
                             maintainanceProvider.allmaintainance[index];
+                        // final x = maintainanceProvider.allServices[index];
                         return Container(
                           padding: const EdgeInsets.all(3),
                           decoration: BoxDecoration(
@@ -131,6 +137,8 @@ class _MaintainanceState extends State<Maintainance> {
                                                         .carType,
                                                     brand:
                                                         maintainanceItem.brand,
+                                                    servicesTitle:
+                                                        ''
                                                   )));
                                     },
                                   )

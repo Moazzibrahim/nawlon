@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Maintainancedetails with ChangeNotifier {
   final String name;
-  final DateTime? date; // Changed type to DateTime
+  final String? date; // Changed type to DateTime
   final int price;
   final String discription;
   final int id;
@@ -33,8 +33,7 @@ class Maintainancedetails with ChangeNotifier {
       var firstMaintenance = maintenanceList[1];
       return Maintainancedetails(
         name: firstMaintenance['car']['cars_name'],
-        date: DateTime.parse(
-            firstMaintenance['created_at']), // Parsing date string
+        date: firstMaintenance['created_at'], // Parsing date string
         price: firstMaintenance['maintenances_price'],
         discription: firstMaintenance['description'],
         id: firstMaintenance['id'],
@@ -47,16 +46,43 @@ class Maintainancedetails with ChangeNotifier {
     } else {
       // Handling the case when no maintenance data is available
       return Maintainancedetails(
-          name: '',
-          price: 0,
-          discription: '',
-          id: 0,
-          carType: '',
-          brand: '',
-          // servicesTitle: '',
-          // servicesPrice: 0,
-          // carPartsName: ''
-          );
+        name: '',
+        price: 0,
+        discription: '',
+        id: 0,
+        carType: '',
+        brand: '',
+        // servicesTitle: '',
+        // servicesPrice: 0,
+        // carPartsName: ''
+      );
     }
   }
+}
+
+class ServicesMaintainnance {
+  final String servicesTitle;
+  final int servicesPrice;
+
+  ServicesMaintainnance({
+    required this.servicesTitle,
+    required this.servicesPrice,
+  });
+
+  factory ServicesMaintainnance.fromJson(Map<String, dynamic> json) =>
+      ServicesMaintainnance(
+        servicesTitle: json['servicesTitle'],
+        servicesPrice: json['servicesPrice'],
+      );
+}
+
+class ServicesMaintainnanceList {
+  final List<dynamic> servicesMaintainnanceList;
+
+  ServicesMaintainnanceList({required this.servicesMaintainnanceList});
+
+  factory ServicesMaintainnanceList.fromJson(Map<String, dynamic> json) =>
+      ServicesMaintainnanceList(
+        servicesMaintainnanceList: json['0']['maintanence']['servicesMainta'],
+        );
 }

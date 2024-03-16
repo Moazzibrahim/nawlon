@@ -3,13 +3,22 @@ import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MaintainanceDetailsScreen extends StatelessWidget {
-  const MaintainanceDetailsScreen({super.key, required this.title, required this.dis, required this.id, required this.carType, required this.brand});
+  const MaintainanceDetailsScreen(
+      {super.key,
+      required this.title,
+      required this.dis,
+      required this.id,
+      required this.carType,
+      required this.brand,
+      required this.servicesTitle
+      });
   final String title;
   final String dis;
   final int id;
   final String carType;
   final String brand;
-  // final String carPartsName;
+  final String servicesTitle;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +63,7 @@ class MaintainanceDetailsScreen extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(10),
               color: cardBackgroundColor,
-              child:  Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
@@ -88,85 +97,83 @@ class MaintainanceDetailsScreen extends StatelessWidget {
               ),
             ),
             Container(
-          width: 400.w,
-          height: 175.h,
-          padding: const EdgeInsets.all(10),
-          margin: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: cardBackgroundColor,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+              width: 400.w,
+              height: 175.h,
+              padding: const EdgeInsets.all(10),
+              margin: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: cardBackgroundColor,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Description: '),
-                  Expanded(
-                    child: Text(
-                      dis,
-                      overflow: TextOverflow.visible,
-                      maxLines: 3,
-                      softWrap: true,
-                    ),
+                  Row(
+                    children: [
+                      const Text('Description: '),
+                      Expanded(
+                        child: Text(
+                          dis,
+                          overflow: TextOverflow.visible,
+                          maxLines: 3,
+                          softWrap: true,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Row(
+                    children: [Text('ket3 8yar name: '), Text('carPartsName')],
+                  ),
+                  const Row(
+                    children: [
+                      Text('ket3 8yar num: '),
+                      Text('1234'),
+                    ],
+                  ),
+                  const Row(
+                    children: [
+                      Text('Syana Price: '),
+                      Text('500'),
+                    ],
                   ),
                 ],
               ),
-              const Row(
-                children: [Text('ket3 8yar name: '), Text('carPartsName')],
-              ),
-              const Row(
-                children: [
-                  Text('ket3 8yar num: '),
-                  Text('1234'),
-                ],
-              ),
-              const Row(
-                children: [
-                  Text('Syana Price: '),
-                  Text('500'),
-                ],
-              ),
-            ],
-          ),
-        ),
+            ),
           ],
         ),
         Positioned(
-          right: 10,
-          bottom: 130.h,
-          child: SizedBox(
-            
-            width: 170.w,
-            height: 120.h,
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text('service:'),
-                    Text('rash'),
-                    Text('msan3ya'),
-                    Text('3afsha'),
-                    Text('swa2a'),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text('service price:'),
-                    Text('200'),
-                    Text('523'),
-                    Text('100233'),
-                    Text('11111'),
-                  ],
-                )
-              ],
-            ),
-          )
-        )
+            right: 10,
+            bottom: 130.h,
+            child: SizedBox(
+              width: 170.w,
+              height: 120.h,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('service:'),
+                      Text(servicesTitle),
+                      Text('msan3ya'),
+                      Text('3afsha'),
+                      Text('swa2a'),
+                    ],
+                  ),
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('services price'),
+                      Text('200'),
+                      Text('523'),
+                      Text('100233'),
+                      Text('11111'),
+                    ],
+                  )
+                ],
+              ),
+            ))
       ]),
     );
   }
