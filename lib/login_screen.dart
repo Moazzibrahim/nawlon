@@ -15,6 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
   late String errorMessage = '';
+  bool isobscure = true;
 
   @override
   void initState() {
@@ -67,8 +68,18 @@ class _LoginScreenState extends State<LoginScreen> {
               margin: const EdgeInsets.symmetric(horizontal: 40),
               child: TextField(
                 controller: passwordController,
-                decoration: const InputDecoration(labelText: "Password"),
-                obscureText: true,
+                decoration: InputDecoration(
+                    labelText: "Password",
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isobscure = !isobscure;
+                          });
+                        },
+                        icon: isobscure
+                            ? const Icon(Icons.visibility)
+                            : const Icon(Icons.visibility_off))),
+                obscureText: isobscure,
               ),
             ),
             SizedBox(height: size.height * 0.05),
@@ -82,7 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   String result =
                       await LoginModel().loginUser(context, email, password);
                   var message = 'Data Posted Successfully';
-
                   if (result != message) {
                     setState(() {
                       errorMessage = result;

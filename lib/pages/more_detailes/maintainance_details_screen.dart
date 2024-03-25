@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
+import 'package:flutter_dashboard/model/maintainance_details.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MaintainanceDetailsScreen extends StatelessWidget {
@@ -10,16 +11,22 @@ class MaintainanceDetailsScreen extends StatelessWidget {
     this.id,
     this.carType,
     this.brand,
-    this.servicesTitle,
-    this.serviceprice,
+    required this.services,
+    required this.carName,
+    required this.carParts, 
+    required this.price,
+    
   });
+  final String? carName;
   final String? title;
   final String? dis;
   final int? id;
   final String? carType;
   final String? brand;
-  final String? servicesTitle;
-  final String? serviceprice;
+  final List<ServicesMaintainnance> services;
+  final List<CarParts> carParts;
+  final String price;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +87,12 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const Text('car details: '),
-                      const Text('car name:'),
+                      Row(
+                        children: [
+                          const Text('car name:'),
+                          Text(carName!),
+                        ],
+                      ),
                       Row(
                         children: [
                           const Text('car model: '),
@@ -124,8 +136,13 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Row(
-                    children: [Text('ket3 8yar name: '), Text('carPartsName')],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('ket3 8yar name: '),
+                    for(var e in carParts)
+                      Text(e.name)
+                    ],
                   ),
                   const Row(
                     children: [
@@ -133,10 +150,10 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                       Text('1234'),
                     ],
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      Text('Syana Price: '),
-                      Text('500'),
+                      const Text('سعر الصيانة: '),
+                      Text(price),
                     ],
                   ),
                 ],
@@ -156,21 +173,17 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('service:'),
-                      Text(servicesTitle!),
-                      // const Text('msan3ya'),
-                      // const Text('3afsha'),
-                      // const Text('swa2a'),
+                      const Text('اسم الخدمة',style: TextStyle(fontWeight: FontWeight.bold),),
+                      for(var e in services)
+                        Text(e.servicesTitle),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('services price'),
-                      Text(serviceprice!),
-                      // const Text('523'),
-                      // const Text('100233'),
-                      // const Text('11111'),
+                      const Text('سعر الخدمة',style: TextStyle(fontWeight: FontWeight.bold),),
+                      for(var e in services)
+                        Text(e.servicesPrice),
                     ],
                   )
                 ],

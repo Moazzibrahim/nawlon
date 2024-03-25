@@ -28,12 +28,6 @@ class _MaintainanceState extends State<Maintainance> {
       // Handle errors here, e.g., show an error message
       print('Error fetching maintainance data: $error');
     });
-    Provider.of<Maintainanceprovider>(context, listen: false)
-        .getServicesMaintainance(context)
-        .catchError((error) {
-      // Handle errors here, e.g., show an error message
-      print('Error fetching services data: $error');
-    });
   }
 
   @override
@@ -70,7 +64,6 @@ class _MaintainanceState extends State<Maintainance> {
                       itemBuilder: (BuildContext context, int index) {
                         final maintainanceItem =
                             maintainanceProvider.allmaintainance[index];
-                        final x = maintainanceProvider.allServices[index];
                         return Container(
                           padding: const EdgeInsets.all(3),
                           decoration: BoxDecoration(
@@ -129,18 +122,25 @@ class _MaintainanceState extends State<Maintainance> {
                                           MaterialPageRoute(
                                               builder: (ctx) =>
                                                   MaintainanceDetailsScreen(
-                                                      title: widget.title,
-                                                      dis: maintainanceItem
-                                                          .discription,
-                                                      id: maintainanceItem.id,
-                                                      carType: maintainanceItem
-                                                          .carType,
-                                                      brand: maintainanceItem
-                                                          .brand,
-                                                      serviceprice:
-                                                          x.servicesPrice,
-                                                      servicesTitle:
-                                                          x.servicesTitle)));
+                                                    title: widget.title,
+                                                    dis: maintainanceItem
+                                                        .discription,
+                                                    id: maintainanceItem.id,
+                                                    carType: maintainanceItem
+                                                        .carType,
+                                                    brand:
+                                                        maintainanceItem.brand,
+                                                    services:
+                                                        maintainanceProvider
+                                                            .allServices,
+                                                    carName:
+                                                        maintainanceItem.name,
+                                                    carParts:
+                                                        maintainanceProvider.allCarParts,
+                                                    price: maintainanceItem
+                                                        .price
+                                                        .toString(),
+                                                  )));
                                     },
                                   )
                                 ],
