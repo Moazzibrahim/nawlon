@@ -4,7 +4,7 @@ import 'package:flutter_dashboard/model/home_model.dart';
 import 'package:flutter_dashboard/pages/details/cars_details_page.dart';
 import 'package:flutter_dashboard/pages/details/grid_employees.dart';
 import 'package:flutter_dashboard/pages/details/grid_maintainance.dart';
-import 'package:flutter_dashboard/pages/details/money.dart';
+import 'package:flutter_dashboard/pages/details/grid_money.dart';
 import 'package:flutter_dashboard/pages/details/nawlen_page.dart';
 import 'package:flutter_dashboard/pages/details/widgets/grid_inventory.dart';
 

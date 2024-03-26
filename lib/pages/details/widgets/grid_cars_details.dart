@@ -84,7 +84,7 @@ class _GridCarsDetailsState extends State<GridCarsDetails> {
                     decoration: BoxDecoration(
                         color: carsProvider.allcars[index].color,
                         borderRadius: BorderRadius.circular(15)),
-                    child: Row(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(

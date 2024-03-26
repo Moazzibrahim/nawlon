@@ -3,6 +3,7 @@ import 'package:flutter_dashboard/Provider/cars_providers.dart';
 import 'package:flutter_dashboard/Provider/employees_provider.dart';
 import 'package:flutter_dashboard/Provider/inventory_provider.dart';
 import 'package:flutter_dashboard/Provider/maintainance_provider.dart';
+import 'package:flutter_dashboard/Provider/money_provider.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/login_screen.dart';
 import 'package:flutter_dashboard/model/login_model.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
                     create: (context) => InventoryProvider()),
                 ChangeNotifierProvider(
                     create: (context) => Maintainanceprovider()),
+                ChangeNotifierProvider(create: (context) => MoneyProvider())
               ],
               child: MaterialApp(
                 title: 'Flutter Responsive Dashboard',
