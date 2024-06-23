@@ -171,7 +171,7 @@ class MaintainanceDetailsScreen extends StatelessWidget {
             bottom: 130.h,
             child: SizedBox(
               width: 170.w,
-              height: 110.h,
+              height: 100.h,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
