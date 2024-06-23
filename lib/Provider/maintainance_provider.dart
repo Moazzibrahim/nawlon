@@ -33,7 +33,7 @@ class Maintainanceprovider with ChangeNotifier {
         List<Maintainancedetails> l = ml.maintainanceList.map((e) => Maintainancedetails.fromJson(e)).toList();
         for(var e in l){
           allServices = e.servicesMaintainnance;
-          e.carParts.forEach((e) {allCarParts.add(e);});
+          for (var e in e.carParts) {allCarParts.add(e);}
         }
         allmaintainance=l;
         notifyListeners();

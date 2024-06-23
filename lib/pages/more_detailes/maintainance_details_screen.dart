@@ -13,10 +13,10 @@ class MaintainanceDetailsScreen extends StatelessWidget {
     this.brand,
     required this.services,
     required this.carName,
-    required this.carParts, 
+    required this.carParts,
     required this.price,
-    
   });
+
   final String? carName;
   final String? title;
   final String? dis;
@@ -26,7 +26,6 @@ class MaintainanceDetailsScreen extends StatelessWidget {
   final List<ServicesMaintainnance> services;
   final List<CarParts> carParts;
   final String price;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -140,8 +139,14 @@ class MaintainanceDetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text('ket3 8yar name: '),
-                    for(var e in carParts)
-                      Text(e.name)
+                      for (var e in carParts)
+                        Expanded(
+                            child: Text(
+                          e.name,
+                          overflow: TextOverflow.visible,
+                          maxLines: 2,
+                          softWrap: true,
+                        )),
                     ],
                   ),
                   const Row(
@@ -166,24 +171,28 @@ class MaintainanceDetailsScreen extends StatelessWidget {
             bottom: 130.h,
             child: SizedBox(
               width: 170.w,
-              height: 120.h,
+              height: 110.h,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('اسم الخدمة',style: TextStyle(fontWeight: FontWeight.bold),),
-                      for(var e in services)
-                        Text(e.servicesTitle),
+                      const Text(
+                        'اسم الخدمة',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      for (var e in services) Text(e.servicesTitle),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text('سعر الخدمة',style: TextStyle(fontWeight: FontWeight.bold),),
-                      for(var e in services)
-                        Text(e.servicesPrice),
+                      const Text(
+                        'سعر الخدمة',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      for (var e in services) Text(e.servicesPrice),
                     ],
                   )
                 ],
