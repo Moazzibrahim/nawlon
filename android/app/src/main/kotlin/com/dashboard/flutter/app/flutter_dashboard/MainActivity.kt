@@ -1,4 +1,4 @@
-package com.dashboard.flutter.app.flutter_dashboard
+package org.nawlon.login
 
 import io.flutter.embedding.android.FlutterActivity
 
