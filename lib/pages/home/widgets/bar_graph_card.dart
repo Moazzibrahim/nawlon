@@ -9,39 +9,64 @@ class BarGraphCard extends StatelessWidget {
   BarGraphCard({super.key});
 
   final List<BarGraphModel> data = [
-    BarGraphModel(
-        lable: "Activity Level",
-        color: const Color(0xFFFEB95A),
-        graph: [
-          GraphModel(x: 0, y: 8),
-          GraphModel(x: 1, y: 10),
-          GraphModel(x: 2, y: 7),
-          GraphModel(x: 3, y: 4),
-          GraphModel(x: 4, y: 4),
-          GraphModel(x: 5, y: 6),
-        ]),
-    BarGraphModel(lable: "profit", color: const Color(0xFFF2C8ED), graph: [
+    BarGraphModel(lable: "الايرادات", color: Colors.green, graph: [
       GraphModel(x: 0, y: 8),
       GraphModel(x: 1, y: 10),
-      GraphModel(x: 2, y: 9),
-      GraphModel(x: 3, y: 6),
-      GraphModel(x: 4, y: 6),
-      GraphModel(x: 5, y: 7),
+      GraphModel(x: 2, y: 7),
+      GraphModel(x: 3, y: 4),
+      GraphModel(x: 4, y: 4),
+      GraphModel(x: 5, y: 6),
+      GraphModel(x: 6, y: 7),
+      GraphModel(x: 7, y: 10),
+      GraphModel(x: 8, y: 7),
+      GraphModel(x: 9, y: 4),
+      GraphModel(x: 10, y: 4),
+      GraphModel(x: 11, y: 10),
     ]),
-    BarGraphModel(
-        lable: " Level",
-        color: const Color(0xFF20AEF3),
-        graph: [
-          GraphModel(x: 0, y: 7),
-          GraphModel(x: 1, y: 10),
-          GraphModel(x: 2, y: 7),
-          GraphModel(x: 3, y: 4),
-          GraphModel(x: 4, y: 4),
-          GraphModel(x: 5, y: 10),
-        ]),
+    BarGraphModel(lable: "المصروفات", color: Colors.red, graph: [
+      GraphModel(x: 0, y: 8),
+      GraphModel(x: 1, y: 10),
+      GraphModel(x: 2, y: 7),
+      GraphModel(x: 3, y: 4),
+      GraphModel(x: 4, y: 4),
+      GraphModel(x: 5, y: 6),
+      GraphModel(x: 6, y: 7),
+      GraphModel(x: 7, y: 10),
+      GraphModel(x: 8, y: 7),
+      GraphModel(x: 9, y: 4),
+      GraphModel(x: 10, y: 4),
+      GraphModel(x: 11, y: 10),
+    ]),
+    BarGraphModel(lable: " المكسب", color: Colors.grey, graph: [
+      GraphModel(x: 0, y: 8),
+      GraphModel(x: 1, y: 10),
+      GraphModel(x: 2, y: 7),
+      GraphModel(x: 3, y: 4),
+      GraphModel(x: 4, y: 4),
+      GraphModel(x: 5, y: 6),
+      GraphModel(x: 6, y: 7),
+      GraphModel(x: 7, y: 10),
+      GraphModel(x: 8, y: 7),
+      GraphModel(x: 9, y: 4),
+      GraphModel(x: 10, y: 4),
+      GraphModel(x: 11, y: 10),
+    ]),
   ];
 
-  final lable = ['M', 'T', 'W', 'T', 'F', 'S'];
+  final lable = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Abr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
 
   @override
   Widget build(BuildContext context) {
